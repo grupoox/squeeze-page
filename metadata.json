@@ -1,0 +1,6 @@
+{
+  "name": "The Stories — Redesign e Otimizador de Squeeze Page",
+  "description": "Diagnóstico de conversão aprofundado e redesign editorial de alta performance para a squeeze page de The Stories (thestories.cc), com testes de variantes, prévia de edições, comparador antes/depois e exportador de código limpo pronto para publicação.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
