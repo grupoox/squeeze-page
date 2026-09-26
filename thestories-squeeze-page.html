@@ -1,17 +1,4 @@
-import React, { useState } from 'react';
-import { Copy, Check, Download, Code2, FileCode, CheckCircle2, Server, Eye, ExternalLink } from 'lucide-react';
-import { SqueezePageConfig } from '../types';
-
-interface CodeExporterProps {
-  config: SqueezePageConfig;
-}
-
-export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
-  const [copiedType, setCopiedType] = useState<'html' | 'react' | null>(null);
-  const [exportTab, setExportTab] = useState<'html' | 'preview'>('html');
-
-  // Pure standalone HTML/CSS/JS ready for any static web host
-  const standaloneHtml = `<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -41,7 +28,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
   <meta name="twitter:description" content="Histórias reais de amor e recomeços entregues todo domingo às 08:08.">
   <meta name="twitter:image" content="https://www.thestories.cc/img/social.jpg?v=260623">
 
-  <!-- Favicon e RSS Oficial -->
+  <!-- Favicon e RSS -->
   <link rel="icon" type="image/vnd.microsoft.icon" href="https://fonts.gstatic.com/s/e/notoemoji/17.0/1f9f8/32.png"/>
   <link rel="service.post" type="application/atom+xml" title="The Stories - Atom" href="https://feeds.feedburner.com/thestoriescc" />
 
@@ -50,7 +37,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Google Tag Manager (Seu ID de Produção) -->
+  <!-- Google Tag Manager (Seu ID Original) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZBPFV014K"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -60,6 +47,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
   </script>
 
   <style>
+    /* Reset & Variáveis de Estilo Editorial */
     :root {
       --bg-color: #FAF8F5;
       --card-bg: #FFFFFF;
@@ -71,13 +59,16 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       --btn-bg: #1C1917;
       --btn-hover: #292524;
       --btn-text: #FFFFFF;
+      --accent: #E0533C;
       --max-width: 640px;
     }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       background-color: var(--bg-color);
@@ -90,6 +81,8 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       -webkit-font-smoothing: antialiased;
       position: relative;
     }
+
+    /* Cabeçalho Limpo */
     header {
       width: 100%;
       border-bottom: 1px solid var(--border-color);
@@ -100,6 +93,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       top: 0;
       z-index: 20;
     }
+
     .header-container {
       max-width: 900px;
       margin: 0 auto;
@@ -107,6 +101,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       align-items: center;
       justify-content: space-between;
     }
+
     .brand-logo-text {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 24px;
@@ -118,6 +113,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       align-items: center;
       gap: 6px;
     }
+
     .header-badge {
       font-size: 13px;
       color: var(--text-subtle);
@@ -126,6 +122,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       align-items: center;
       gap: 6px;
     }
+
     .header-cta-btn {
       font-size: 12px;
       font-weight: 600;
@@ -137,9 +134,12 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       cursor: pointer;
       transition: all 0.2s;
     }
+
     .header-cta-btn:hover {
       background: #F5F5F4;
     }
+
+    /* Conteúdo Principal */
     main {
       max-width: var(--max-width);
       width: 100%;
@@ -147,6 +147,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       padding: 40px 20px 60px 20px;
       text-align: center;
     }
+
     .kicker {
       display: inline-flex;
       align-items: center;
@@ -158,6 +159,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       color: var(--text-subtle);
       margin-bottom: 20px;
     }
+
     .logo {
       width: 84px;
       height: 84px;
@@ -167,6 +169,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
       border: 1px solid rgba(0, 0, 0, 0.04);
     }
+
     h1 {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 42px;
@@ -176,6 +179,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       margin-bottom: 16px;
       color: var(--text-main);
     }
+
     .description {
       font-family: 'Newsreader', Georgia, serif;
       font-size: 20px;
@@ -186,6 +190,8 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       margin-left: auto;
       margin-right: auto;
     }
+
+    /* Card do Formulário */
     .form-card {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
@@ -195,12 +201,14 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       margin-bottom: 28px;
       text-align: left;
     }
+
     .form-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 16px;
     }
+
     .form-title {
       font-size: 11px;
       font-weight: 700;
@@ -208,20 +216,24 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       letter-spacing: 1.2px;
       color: #A8A29E;
     }
+
     .form-schedule-tag {
       font-size: 11px;
       color: #78716C;
     }
+
     .subscribe-form {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
+
     .input-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
+
     input[type="text"],
     input[type="email"] {
       width: 100%;
@@ -235,15 +247,18 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       color: var(--text-main);
       transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
     }
+
     input[type="text"]:focus,
     input[type="email"]:focus {
       border-color: var(--border-focus);
       background: #FFFFFF;
       box-shadow: 0 0 0 3px rgba(28, 25, 23, 0.08);
     }
+
     input::placeholder {
       color: #A8A29E;
     }
+
     button[type="submit"] {
       padding: 16px 24px;
       font-size: 15px;
@@ -261,11 +276,17 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       justify-content: center;
       gap: 8px;
     }
+
     button[type="submit"]:hover {
       background: var(--btn-hover);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
       transform: translateY(-1px);
     }
+
+    button[type="submit"]:active {
+      transform: translateY(0);
+    }
+
     .trust-guarantee {
       margin-top: 14px;
       padding-top: 12px;
@@ -276,6 +297,8 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       font-size: 12px;
       color: var(--text-subtle);
     }
+
+    /* Amostra da Edição (Degustação de Domingo) */
     .teaser-card {
       background: #FFFFFF;
       border: 1px solid var(--border-color);
@@ -283,7 +306,9 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       padding: 24px;
       margin-bottom: 24px;
       text-align: left;
+      position: relative;
     }
+
     .teaser-top {
       display: flex;
       justify-content: space-between;
@@ -295,6 +320,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       text-transform: uppercase;
       letter-spacing: 0.8px;
     }
+
     .teaser-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 21px;
@@ -302,6 +328,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       color: var(--text-main);
       margin-bottom: 10px;
     }
+
     .teaser-quote {
       font-family: 'Newsreader', Georgia, serif;
       font-style: italic;
@@ -312,6 +339,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       color: #292524;
       margin-bottom: 16px;
     }
+
     .teaser-read-btn {
       display: inline-flex;
       align-items: center;
@@ -325,10 +353,13 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       cursor: pointer;
       padding: 0;
     }
+
     .teaser-read-btn:hover {
       text-decoration: underline;
       text-underline-offset: 4px;
     }
+
+    /* Prova Social & Depoimento */
     .social-proof-box {
       border: 1px solid var(--border-color);
       border-radius: 16px;
@@ -337,6 +368,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       margin-bottom: 24px;
       text-align: left;
     }
+
     .social-proof-header {
       display: flex;
       align-items: center;
@@ -347,22 +379,27 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       flex-wrap: wrap;
       gap: 8px;
     }
+
     .stars {
       color: #F59E0B;
       letter-spacing: 2px;
     }
+
     .testimonial-text {
       font-size: 13px;
       font-style: italic;
       color: #44403C;
       line-height: 1.5;
     }
+
     .testimonial-author {
       font-size: 11px;
       color: #78716C;
       margin-top: 6px;
       text-align: right;
     }
+
+    /* Seção Ritual */
     .ritual-section {
       padding: 20px;
       border-radius: 14px;
@@ -372,6 +409,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       line-height: 1.6;
       margin-bottom: 32px;
     }
+
     .ritual-section strong {
       color: var(--text-main);
       display: block;
@@ -380,6 +418,8 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       font-size: 17px;
       font-weight: 600;
     }
+
+    /* Rodapé */
     footer {
       border-top: 1px solid var(--border-color);
       padding: 24px;
@@ -387,6 +427,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       color: var(--text-subtle);
       text-align: center;
     }
+
     .footer-content {
       max-width: 900px;
       margin: 0 auto;
@@ -396,14 +437,18 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       flex-wrap: wrap;
       gap: 12px;
     }
+
     .footer-links a {
       color: var(--text-subtle);
       text-decoration: none;
       margin-left: 14px;
     }
+
     .footer-links a:hover {
       text-decoration: underline;
     }
+
+    /* Modal de Leitura da Crônica Completa (Vanilla JS, sem dependência) */
     .modal-backdrop {
       display: none;
       position: fixed;
@@ -418,9 +463,11 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       justify-content: center;
       padding: 16px;
     }
+
     .modal-backdrop.active {
       display: flex;
     }
+
     .modal-card {
       background: #FAF8F5;
       max-width: 620px;
@@ -434,6 +481,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       text-align: left;
       position: relative;
     }
+
     .modal-close-btn {
       position: absolute;
       top: 20px;
@@ -447,10 +495,12 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       padding: 4px 8px;
       border-radius: 6px;
     }
+
     .modal-close-btn:hover {
       background: #E7E5E4;
       color: #1C1917;
     }
+
     .modal-meta {
       font-size: 11px;
       font-weight: 600;
@@ -459,21 +509,26 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       color: #78716C;
       margin-bottom: 8px;
     }
+
     .modal-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 28px;
       line-height: 1.25;
       margin-bottom: 16px;
     }
+
     .modal-body {
       font-family: 'Newsreader', Georgia, serif;
       font-size: 18px;
       line-height: 1.7;
       color: #292524;
+      space-y: 16px;
     }
+
     .modal-body p {
       margin-bottom: 16px;
     }
+
     .modal-cta-box {
       margin-top: 24px;
       padding: 20px;
@@ -482,16 +537,19 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       border: 1px solid #E7E5E4;
       text-align: center;
     }
+
     .modal-cta-box h3 {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 20px;
       margin-bottom: 6px;
     }
+
     .modal-cta-box p {
       font-size: 13px;
       color: var(--text-muted);
       margin-bottom: 12px;
     }
+
     .modal-cta-box button {
       background: var(--btn-bg);
       color: #FFFFFF;
@@ -502,19 +560,37 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       font-weight: 600;
       cursor: pointer;
     }
+
+    /* Responsividade */
     @media (max-width: 640px) {
-      h1 { font-size: 32px; }
-      .description { font-size: 17px; }
-      .input-grid { grid-template-columns: 1fr; }
-      .form-card { padding: 20px; }
-      .header-badge { display: none; }
-      .footer-content { flex-direction: column; text-align: center; }
-      .modal-card { padding: 24px; }
+      h1 {
+        font-size: 32px;
+      }
+      .description {
+        font-size: 17px;
+      }
+      .input-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-card {
+        padding: 20px;
+      }
+      .header-badge {
+        display: none;
+      }
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .modal-card {
+        padding: 24px;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- Topo Editorial -->
   <header>
     <div class="header-container">
       <a href="/" class="brand-logo-text">
@@ -532,19 +608,23 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
     </div>
   </header>
 
+  <!-- Conteúdo Principal -->
   <main id="topo">
     <div class="kicker">
       <span>☕ O seu ritual matinal de domingo</span>
     </div>
 
+    <!-- Logo Oficial Original -->
     <div>
       <img src="https://i.imgur.com/owFGbM2.png" alt="The Stories" class="logo" />
     </div>
 
-    <h1>${config.headline}</h1>
+    <!-- Título Principal -->
+    <h1>Nem sempre com finais felizes, mas sempre verdadeiras.</h1>
 
+    <!-- Descrição de Valor Aconchegante -->
     <p class="description">
-      ${config.subheadline}
+      Histórias de quem realmente sentiu algo sincero. Para ler com calma no domingo de manhã, enquanto o café ainda está quente.
     </p>
 
     <!-- Formulário Oficial com Integração Real do app.thestories.cc -->
@@ -567,7 +647,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
         </div>
 
         <button type="submit">
-          <span>${config.ctaText}</span>
+          <span>Receber no Domingo às 08:08</span>
           <span>→</span>
         </button>
       </form>
@@ -578,6 +658,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       </div>
     </div>
 
+    <!-- Amostra de Domingo (Degustação de Conteúdo) -->
     <div class="teaser-card">
       <div class="teaser-top">
         <span>Amostra da Edição #52</span>
@@ -593,9 +674,10 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       </button>
     </div>
 
+    <!-- Prova Social Crível -->
     <div class="social-proof-box">
       <div class="social-proof-header">
-        <div><strong>${config.subscriberCount}</strong> todo domingo</div>
+        <div><strong>+18.400 leitores sensíveis</strong> todo domingo</div>
         <div class="stars">★★★★★ <span style="color:#57534E; font-size:12px;">4.9/5</span></div>
       </div>
       <div class="testimonial-text">
@@ -604,12 +686,14 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       <div class="testimonial-author">— Mariana S., leitora desde a edição #12</div>
     </div>
 
+    <!-- Contexto do Ritual das 08:08 -->
     <div class="ritual-section">
       <strong>Por que às 08:08 da manhã de domingo?</strong>
       Porque é o único momento da semana em que o mundo ainda não acelerou. As notificações de trabalho estão silenciadas, o café está na xícara e você tem cinco minutos para lembrar que o afeto sincero ainda existe.
     </div>
   </main>
 
+  <!-- Rodapé -->
   <footer>
     <div class="footer-content">
       <div>© 2026 the stories 🧸 · Histórias para ler e sentir</div>
@@ -620,6 +704,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
     </div>
   </footer>
 
+  <!-- Modal Interativo de Leitura Completa (Vanilla JS) -->
   <div class="modal-backdrop" id="storyModal" onclick="closeStoryModal(event)">
     <div class="modal-card" onclick="event.stopPropagation()">
       <button type="button" class="modal-close-btn" onclick="closeStoryModal()" aria-label="Fechar">&times;</button>
@@ -663,6 +748,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       }
     }
 
+    // Fechar com tecla ESC
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         closeStoryModal();
@@ -670,152 +756,4 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
     });
   </script>
 </body>
-</html>`;
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(standaloneHtml);
-    setCopiedType('html');
-    setTimeout(() => setCopiedType(null), 2500);
-  };
-
-  const handleDownloadHtml = () => {
-    const blob = new Blob([standaloneHtml], { type: 'text/html;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'index.html';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-  };
-
-  return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 space-y-6">
-      {/* Top Banner */}
-      <div className="bg-white rounded-2xl p-6 sm:p-8 border border-stone-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div>
-          <div className="text-xs font-semibold uppercase tracking-wider text-emerald-700 flex items-center gap-1.5 mb-1">
-            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-            <span>Arquivo HTML Estático Puro (Zero Dependências)</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-serif-display font-medium text-stone-900">
-            Baixar index.html Pronto para sua Hospedagem
-          </h2>
-          <p className="text-sm text-stone-600 font-sans mt-1">
-            Compatível com qualquer servidor: cPanel, Hostinger, Locaweb, Cloudflare Pages, Nginx, Apache ou FTP.
-          </p>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <button
-            onClick={handleCopy}
-            className="px-4 py-2.5 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-xs font-semibold transition-all flex items-center gap-2 shadow-sm cursor-pointer"
-          >
-            {copiedType === 'html' ? (
-              <>
-                <Check className="w-4 h-4 text-emerald-400" />
-                <span>Copiado com Sucesso!</span>
-              </>
-            ) : (
-              <>
-                <Copy className="w-4 h-4" />
-                <span>Copiar HTML Completo</span>
-              </>
-            )}
-          </button>
-
-          <button
-            onClick={handleDownloadHtml}
-            className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-semibold transition-all flex items-center gap-2 shadow-sm cursor-pointer"
-          >
-            <Download className="w-4 h-4" />
-            <span>Baixar index.html</span>
-          </button>
-        </div>
-      </div>
-
-      {/* Como usar na sua hospedagem */}
-      <div className="bg-stone-50 rounded-2xl p-6 border border-stone-200 space-y-3 text-xs">
-        <div className="flex items-center gap-2 text-stone-900 font-semibold text-sm">
-          <Server className="w-4 h-4 text-stone-700" />
-          <span>Como colocar este arquivo na sua hospedagem em 3 passos simples:</span>
-        </div>
-        <ol className="text-stone-700 space-y-2 list-decimal list-inside leading-relaxed">
-          <li>
-            Clique no botão verde <strong>"Baixar index.html"</strong> acima (ou copie o código abaixo).
-          </li>
-          <li>
-            Acesse o gerenciador de arquivos da sua hospedagem (ex: <code>public_html</code> no cPanel, Hostinger ou Cloudflare).
-          </li>
-          <li>
-            Faça backup do seu <code>index.html</code> antigo e envie este novo <code>index.html</code> para a raiz do seu domínio. Pronto! Ele já está conectado ao seu formulário oficial (<code>https://app.thestories.cc/subscription/form</code>) e ao Google Tag Manager.
-          </li>
-        </ol>
-      </div>
-
-      {/* Navigation tabs */}
-      <div className="flex items-center gap-2 border-b border-stone-200 pb-2">
-        <button
-          onClick={() => setExportTab('html')}
-          className={`flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
-            exportTab === 'html'
-              ? 'bg-stone-900 text-white shadow-2xs'
-              : 'text-stone-600 hover:text-stone-900'
-          }`}
-        >
-          <FileCode className="w-4 h-4" />
-          <span>Ver Código Fonte HTML (index.html)</span>
-        </button>
-        <button
-          onClick={() => setExportTab('preview')}
-          className={`flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
-            exportTab === 'preview'
-              ? 'bg-stone-900 text-white shadow-2xs'
-              : 'text-stone-600 hover:text-stone-900'
-          }`}
-        >
-          <Eye className="w-4 h-4" />
-          <span>Prévia Real do HTML Puro no Navegador</span>
-        </button>
-      </div>
-
-      {/* Content Area */}
-      {exportTab === 'html' ? (
-        <div className="relative rounded-2xl overflow-hidden border border-stone-800 bg-[#161514] text-stone-200 shadow-lg">
-          <div className="flex items-center justify-between px-4 py-3 bg-[#1F1D1B] border-b border-stone-800 text-xs">
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
-              <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-              <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
-              <span className="font-mono text-stone-400 ml-2">index.html (Arquivo Único Autossuficiente)</span>
-            </div>
-            <button
-              onClick={handleCopy}
-              className="text-[11px] text-stone-400 hover:text-stone-100 flex items-center gap-1.5"
-            >
-              {copiedType === 'html' ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copiedType === 'html' ? 'Copiado!' : 'Copiar'}</span>
-            </button>
-          </div>
-
-          <pre className="p-5 font-mono text-xs overflow-x-auto max-h-[550px] leading-relaxed text-stone-300 selection:bg-stone-700">
-            <code>{standaloneHtml}</code>
-          </pre>
-        </div>
-      ) : (
-        <div className="rounded-2xl overflow-hidden border border-stone-300 shadow-md bg-white">
-          <div className="p-3 bg-stone-100 border-b border-stone-200 text-xs text-stone-600 flex items-center justify-between">
-            <span>Renderizado diretamente pelo navegador (iframe isolado do index.html puro):</span>
-            <span className="font-mono text-[11px] bg-stone-200 px-2 py-0.5 rounded">public/index.html</span>
-          </div>
-          <iframe
-            srcDoc={standaloneHtml}
-            title="Prévia do index.html puro"
-            className="w-full h-[700px] border-0"
-          />
-        </div>
-      )}
-    </div>
-  );
-};
+</html>
