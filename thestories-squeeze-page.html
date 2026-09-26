@@ -8,9 +8,34 @@
   <title>The Stories: Histórias Verdadeiras para Ler e Sentir</title>
   <meta name="title" content="The Stories: Histórias Verdadeiras para Ler e Sentir">
   <meta name="description" content="Histórias reais de amor, desencontros e recomeços para o seu domingo de manhã. Assine gratuitamente e receba doses de sentimento direto na sua caixa de entrada às 08:08.">
-  <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.thestories.cc/">
   <meta name="language" content="Portuguese">
+  <meta name="author" content="The Stories">
+  <meta name="publisher" content="The Stories">
+
+  <!-- Diretivas de Rastreamento para Motores Tradicionais (Google, Bing, Yahoo) -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Diretivas Específicas para Inteligências Artificiais e LLMs (OpenAI, ChatGPT, Claude, Perplexity, etc.) -->
+  <meta name="GPTBot" content="index, follow">
+  <meta name="ChatGPT-User" content="index, follow">
+  <meta name="Google-Extended" content="index, follow">
+  <meta name="PerplexityBot" content="index, follow">
+  <meta name="ClaudeBot" content="index, follow">
+  <meta name="anthropic-ai" content="index, follow">
+  <meta name="cohere-ai" content="index, follow">
+  <meta name="CCBot" content="index, follow">
+  <meta name="meta-externalagent" content="index, follow">
+  <meta name="Applebot" content="index, follow">
+  <meta name="Applebot-Extended" content="index, follow">
+
+  <!-- Metatags de Contexto Semântico para IA -->
+  <meta name="ai:summary" content="The Stories é uma publicação editorial dominical brasileira com histórias reais, crônicas intimistas e literatura sincera enviadas gratuitamente por e-mail todo domingo às 08:08. Conta também com a Rádio The Stories e apoio via PIX.">
+  <meta name="ai:author" content="The Stories">
+  <meta name="ai:content_type" content="creative nonfiction, newsletter, literature, audio radio">
+  <meta name="ai:frequency" content="weekly (Sunday 08:08)">
 
   <!-- Open Graph / WhatsApp / Facebook / LinkedIn -->
   <meta property="og:type" content="website">
@@ -37,7 +62,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Google Tag Manager (Seu ID de Produção) -->
+  <!-- Google Tag Manager Oficial -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZBPFV014K"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -46,8 +71,59 @@
     gtag('config', 'G-TZBPFV014K', { 'cookie_domain': 'auto' });
   </script>
 
+  <!-- Schema.org Dados Estruturados para Mecanismos de Busca e IAs -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://www.thestories.cc/#website",
+        "url": "https://www.thestories.cc/",
+        "name": "The Stories",
+        "description": "Histórias reais de amor, desencontros e recomeços enviadas todo domingo às 08:08.",
+        "inLanguage": "pt-BR",
+        "publisher": {
+          "@id": "https://www.thestories.cc/#organization"
+        }
+      },
+      {
+        "@type": "NewsMediaOrganization",
+        "@id": "https://www.thestories.cc/#organization",
+        "name": "The Stories",
+        "url": "https://www.thestories.cc/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://i.imgur.com/owFGbM2.png",
+          "width": "200",
+          "height": "200"
+        },
+        "sameAs": [
+          "https://thestories.cc/radio",
+          "https://thestories.cc/pix",
+          "https://feeds.feedburner.com/thestoriescc"
+        ]
+      },
+      {
+        "@type": "Periodical",
+        "@id": "https://www.thestories.cc/#periodical",
+        "name": "The Stories — Edição Dominical",
+        "description": "Crônicas reais, intimidade e literatura para ler no domingo de manhã às 08:08.",
+        "issuanceType": "Weekly",
+        "frequency": "P1W",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "BRL",
+          "availability": "https://schema.org/InStock",
+          "description": "Assinatura gratuita semanal por e-mail"
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
-    /* Variáveis do Tema Claro (Padrão Alabaster Editorial) */
     :root {
       --bg-color: #FAF8F5;
       --card-bg: #FFFFFF;
@@ -60,17 +136,22 @@
       --btn-bg: #1C1917;
       --btn-hover: #292524;
       --btn-text: #FFFFFF;
-      --header-bg: rgba(250, 248, 245, 0.95);
-      --box-highlight: rgba(245, 245, 244, 0.6);
+      --header-bg: rgba(250, 248, 245, 0.94);
+      --box-highlight: rgba(245, 245, 244, 0.7);
       --border-dashed: #D6D3D1;
       --quote-border: #D6D3D1;
       --modal-bg: #FAF8F5;
       --modal-card-bg: #FFFFFF;
       --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.04);
-      --max-width: 640px;
+      --radio-badge-bg: #F3E8FF;
+      --radio-badge-text: #6B21A8;
+      --radio-badge-border: #E9D5FF;
+      --pix-badge-bg: #CCFBF1;
+      --pix-badge-text: #0F766E;
+      --pix-badge-border: #99F6E4;
+      --max-width: 660px;
     }
 
-    /* Variáveis do Tema Escuro (Veludo Noturno) */
     [data-theme="dark"] {
       --bg-color: #121110;
       --card-bg: #1A1918;
@@ -83,53 +164,57 @@
       --btn-bg: #F5F5F4;
       --btn-hover: #FFFFFF;
       --btn-text: #121110;
-      --header-bg: rgba(18, 17, 16, 0.95);
-      --box-highlight: rgba(30, 28, 26, 0.7);
+      --header-bg: rgba(18, 17, 16, 0.94);
+      --box-highlight: rgba(30, 28, 26, 0.75);
       --border-dashed: #3E3B37;
       --quote-border: #44403C;
       --modal-bg: #1A1918;
       --modal-card-bg: #22201E;
-      --shadow-soft: 0 4px 25px rgba(0, 0, 0, 0.4);
+      --shadow-soft: 0 4px 25px rgba(0, 0, 0, 0.45);
+      --radio-badge-bg: #2E1065;
+      --radio-badge-text: #D8B4FE;
+      --radio-badge-border: #581C87;
+      --pix-badge-bg: #134E4A;
+      --pix-badge-text: #5EEAD4;
+      --pix-badge-border: #115E59;
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+      transition: background-color 0.22s ease, border-color 0.22s ease, color 0.22s ease, fill 0.22s ease;
     }
 
     body {
-      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: var(--bg-color);
       color: var(--text-main);
       line-height: 1.6;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       -webkit-font-smoothing: antialiased;
-      position: relative;
     }
 
-    /* Barra Superior */
     header {
-      width: 100%;
       border-bottom: 1px solid var(--border-color);
-      padding: 14px 24px;
       background: var(--header-bg);
       backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       position: sticky;
       top: 0;
-      z-index: 30;
+      z-index: 40;
     }
 
     .header-container {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
+      padding: 12px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 16px;
     }
 
     .brand-logo-text {
@@ -144,22 +229,45 @@
       gap: 6px;
     }
 
-    .header-right {
+    .header-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .header-badge {
+    .nav-action-link {
       font-size: 13px;
-      color: var(--text-subtle);
-      font-weight: 500;
-      display: flex;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      display: inline-flex;
       align-items: center;
       gap: 6px;
+      transition: all 0.2s ease;
     }
 
-    /* Botão Alternador Sol / Lua */
+    .nav-radio {
+      background: var(--radio-badge-bg);
+      color: var(--radio-badge-text);
+      border: 1px solid var(--radio-badge-border);
+    }
+    .nav-radio:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+
+    .nav-pix {
+      background: var(--pix-badge-bg);
+      color: var(--pix-badge-text);
+      border: 1px solid var(--pix-badge-border);
+    }
+    .nav-pix:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+
     .theme-toggle-btn {
       background: var(--card-bg);
       color: var(--text-main);
@@ -173,11 +281,12 @@
       cursor: pointer;
       padding: 0;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      transition: all 0.2s ease;
     }
 
     .theme-toggle-btn:hover {
       border-color: var(--border-focus);
-      transform: scale(1.03);
+      transform: scale(1.04);
     }
 
     .theme-toggle-btn svg {
@@ -186,7 +295,6 @@
       stroke-width: 2;
     }
 
-    /* Mostra Sol no Dark e Lua no Light */
     .icon-sun { display: none; }
     .icon-moon { display: block; }
     [data-theme="dark"] .icon-sun { display: block; }
@@ -204,6 +312,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      transition: all 0.15s ease;
     }
 
     .header-cta-btn:hover {
@@ -211,33 +320,44 @@
       border-color: var(--border-focus);
     }
 
-    /* Conteúdo Principal */
     main {
       max-width: var(--max-width);
       width: 100%;
       margin: 0 auto;
       padding: 40px 20px 60px 20px;
       text-align: center;
+      flex: 1;
     }
 
     .kicker {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
       font-size: 12px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
       color: var(--text-subtle);
-      margin-bottom: 20px;
+      margin: 0 auto 22px auto;
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: 0 auto 20px auto;
+      text-align: center;
     }
 
     .logo {
-      width: 84px;
-      height: 84px;
+      display: block;
+      margin: 0 auto;
+      width: 88px;
+      height: 88px;
       object-fit: contain;
-      border-radius: 18px;
-      margin-bottom: 20px;
+      border-radius: 20px;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
       border: 1px solid var(--border-color);
       background: #FFFFFF;
@@ -248,125 +368,193 @@
       font-size: 42px;
       font-weight: 600;
       line-height: 1.15;
-      letter-spacing: -0.5px;
-      margin-bottom: 16px;
       color: var(--text-main);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
     }
 
     .description {
       font-family: 'Newsreader', Georgia, serif;
-      font-size: 20px;
+      font-size: 19px;
+      font-weight: 400;
       color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 32px auto;
       line-height: 1.55;
-      margin-bottom: 32px;
-      max-width: 580px;
-      margin-left: auto;
-      margin-right: auto;
     }
 
-    /* Card do Formulário */
     .form-card {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 20px;
-      padding: 28px;
+      padding: 30px;
       box-shadow: var(--shadow-soft);
-      margin-bottom: 28px;
-      text-align: left;
+      margin-bottom: 26px;
     }
 
     .form-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
     .form-title {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
-      color: var(--text-subtle);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
     }
 
     .form-schedule-tag {
       font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: var(--input-bg);
+      padding: 4px 10px;
+      border-radius: 20px;
       color: var(--text-subtle);
-    }
-
-    .subscribe-form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+      border: 1px solid var(--border-color);
     }
 
     .input-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
+      margin-bottom: 14px;
     }
 
     input[type="text"],
     input[type="email"] {
       width: 100%;
-      padding: 14px 16px;
-      font-size: 14px;
-      font-family: inherit;
+      padding: 13px 16px;
       border: 1px solid var(--border-color);
       border-radius: 12px;
-      outline: none;
       background: var(--input-bg);
       color: var(--text-main);
+      font-size: 14px;
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
     input[type="text"]:focus,
     input[type="email"]:focus {
       border-color: var(--border-focus);
-      background: var(--card-bg);
-      box-shadow: 0 0 0 3px rgba(120, 113, 108, 0.15);
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
     }
 
-    input::placeholder {
-      color: var(--text-subtle);
-      opacity: 0.8;
+    [data-theme="dark"] input[type="text"]:focus,
+    [data-theme="dark"] input[type="email"]:focus {
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
     }
 
-    button[type="submit"] {
-      padding: 16px 24px;
-      font-size: 15px;
-      font-family: inherit;
-      font-weight: 600;
-      color: var(--btn-text);
+    .btn-submit {
+      width: 100%;
+      padding: 15px 24px;
       background: var(--btn-bg);
+      color: var(--btn-text);
       border: none;
       border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
       cursor: pointer;
-      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
+      transition: all 0.15s ease;
+      font-family: inherit;
     }
 
-    button[type="submit"]:hover {
+    .btn-submit:hover {
       background: var(--btn-hover);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       transform: translateY(-1px);
     }
 
     .trust-guarantee {
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border-color);
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--text-subtle);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 12px;
-      color: var(--text-subtle);
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    /* Amostra da Edição (Degustação de Conteúdo) */
+    .channels-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 24px;
+      text-align: left;
+    }
+
+    .channel-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .channel-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-focus);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .channel-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .channel-icon {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .channel-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    .channel-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 12px;
+    }
+
+    .channel-action {
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .channel-radio .channel-action {
+      color: var(--radio-badge-text);
+    }
+
+    .channel-pix .channel-action {
+      color: var(--pix-badge-text);
+    }
+
     .teaser-card {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
@@ -390,7 +578,7 @@
 
     .teaser-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 21px;
+      font-size: 22px;
       font-weight: 600;
       color: var(--text-main);
       margin-bottom: 10px;
@@ -414,11 +602,11 @@
       font-size: 13px;
       font-weight: 600;
       color: var(--text-main);
-      text-decoration: none;
       background: none;
       border: none;
       cursor: pointer;
       padding: 0;
+      font-family: inherit;
     }
 
     .teaser-read-btn:hover {
@@ -426,7 +614,6 @@
       text-underline-offset: 4px;
     }
 
-    /* Prova Social */
     .social-proof-box {
       border: 1px solid var(--border-color);
       border-radius: 16px;
@@ -442,7 +629,7 @@
       justify-content: space-between;
       font-size: 13px;
       color: var(--text-muted);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       flex-wrap: wrap;
       gap: 8px;
     }
@@ -466,7 +653,6 @@
       text-align: right;
     }
 
-    /* Seção Ritual */
     .ritual-section {
       padding: 20px;
       border-radius: 14px;
@@ -486,36 +672,46 @@
       font-weight: 600;
     }
 
-    /* Rodapé */
     footer {
       border-top: 1px solid var(--border-color);
       padding: 24px;
       font-size: 12px;
       color: var(--text-subtle);
       text-align: center;
+      background: var(--card-bg);
     }
 
     .footer-content {
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
     .footer-links a {
       color: var(--text-subtle);
       text-decoration: none;
-      margin-left: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
 
     .footer-links a:hover {
+      color: var(--text-main);
       text-decoration: underline;
     }
 
-    /* Modal de Leitura da Crônica Completa */
     .modal-backdrop {
       display: none;
       position: fixed;
@@ -525,6 +721,7 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.65);
       backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       z-index: 100;
       align-items: center;
       justify-content: center;
@@ -628,35 +825,45 @@
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
+      font-family: inherit;
     }
 
     @media (max-width: 640px) {
       h1 { font-size: 32px; }
       .description { font-size: 17px; }
       .input-grid { grid-template-columns: 1fr; }
+      .channels-grid { grid-template-columns: 1fr; }
       .form-card { padding: 20px; }
-      .header-badge { display: none; }
       .footer-content { flex-direction: column; text-align: center; }
-      .modal-card { padding: 24px; }
+      .modal-card { padding: 22px; }
+      .nav-action-link span.btn-label-long { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Topo com Logo, Horário e Botão Sol/Lua -->
+  <!-- Topo com Logo, Links (Rádio e PIX) e Alternador Sol/Lua -->
   <header>
     <div class="header-container">
-      <a href="/" class="brand-logo-text">
+      <a href="/" class="brand-logo-text" title="The Stories — Página Inicial">
         <span>the stories</span>
         <span style="font-size: 16px;">🧸</span>
       </a>
 
-      <div class="header-right">
-        <div class="header-badge">
-          <span>☕ Domingo, 08:08</span>
-        </div>
+      <div class="header-actions">
+        <!-- Botão Rádio The Stories -->
+        <a href="https://thestories.cc/radio" class="nav-action-link nav-radio" target="_blank" rel="noopener noreferrer" title="Ouvir a Rádio The Stories">
+          <span>📻</span>
+          <span>Rádio<span class="btn-label-long"> The Stories</span></span>
+        </a>
 
-        <!-- Botão Sol / Lua -->
+        <!-- Botão Apoio / Doação PIX -->
+        <a href="https://thestories.cc/pix" class="nav-action-link nav-pix" target="_blank" rel="noopener noreferrer" title="Apoiar o projeto via PIX">
+          <span>💛</span>
+          <span>Doar<span class="btn-label-long"> via PIX</span></span>
+        </a>
+
+        <!-- Botão Alternador Sol / Lua (Claro / Escuro) -->
         <button
           type="button"
           class="theme-toggle-btn"
@@ -696,15 +903,15 @@
       <span>☕ O seu ritual matinal de domingo</span>
     </div>
 
-    <!-- Logo Oficial Original -->
-    <div>
-      <img src="https://i.imgur.com/owFGbM2.png" alt="The Stories" class="logo" />
+    <!-- Logo Oficial Perfeitamente Centralizada -->
+    <div class="logo-container" style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 0 auto 20px auto; text-align: center;">
+      <img src="https://i.imgur.com/owFGbM2.png" alt="The Stories" class="logo" width="88" height="88" style="display: block; margin: 0 auto;" />
     </div>
 
     <!-- Título Principal -->
     <h1>Nem sempre com finais felizes, mas sempre verdadeiras.</h1>
 
-    <!-- Descrição de Valor Aconchegante -->
+    <!-- Descrição com Proposta de Valor -->
     <p class="description">
       Histórias de quem realmente sentiu algo sincero. Para ler com calma no domingo de manhã, enquanto o café ainda está quente.
     </p>
@@ -712,7 +919,7 @@
     <!-- Formulário Oficial com Integração Real do app.thestories.cc -->
     <div class="form-card" id="formulario">
       <div class="form-header">
-        <span class="form-title">Receber a próxima edição</span>
+        <span class="form-title">Receber a próxima edição gratuita</span>
         <span class="form-schedule-tag">Envio no Domingo às 08:08</span>
       </div>
 
@@ -728,7 +935,7 @@
           <input type="email" name="email" placeholder="Seu melhor e-mail..." required autocomplete="email">
         </div>
 
-        <button type="submit">
+        <button type="submit" class="btn-submit">
           <span>Receber no Domingo às 08:08</span>
           <span>→</span>
         </button>
@@ -738,6 +945,31 @@
         <span>🔒 100% gratuito · Sem spam · Cancele em 1 clique</span>
         <span>⏱️ Leitura de 4 min</span>
       </div>
+    </div>
+
+    <!-- Destaque para Rádio e Doação PIX -->
+    <div class="channels-grid">
+      <a href="https://thestories.cc/radio" target="_blank" rel="noopener noreferrer" class="channel-card channel-radio" title="Ouvir Rádio The Stories">
+        <div>
+          <div class="channel-top">
+            <span class="channel-icon">📻</span>
+            <div class="channel-title">Rádio The Stories</div>
+          </div>
+          <div class="channel-desc">Músicas calmas, lo-fi acústico e poesia para acompanhar seu domingo e leitura.</div>
+        </div>
+        <div class="channel-action">Ouvir a rádio online ↗</div>
+      </a>
+
+      <a href="https://thestories.cc/pix" target="_blank" rel="noopener noreferrer" class="channel-card channel-pix" title="Apoiar o projeto via PIX">
+        <div>
+          <div class="channel-top">
+            <span class="channel-icon">💛</span>
+            <div class="channel-title">Apoie com PIX</div>
+          </div>
+          <div class="channel-desc">Contribua com qualquer quantia para manter as histórias no ar e os autores acolhidos.</div>
+        </div>
+        <div class="channel-action">Fazer doação via PIX ↗</div>
+      </a>
     </div>
 
     <!-- Amostra de Domingo (Degustação de Conteúdo) -->
@@ -751,12 +983,12 @@
         "— 'A gente combinou de nunca ter pressa', ela disse, enquanto mexia o açúcar que já tinha dissolvido há dez minutos. Às 08:08 daquela manhã, entendi que deixar ir também é uma das formas mais bonitas de amar."
       </div>
       <button type="button" class="teaser-read-btn" onclick="openStoryModal()">
-        <span>Continuar lendo esta crônica</span>
+        <span>Continuar lendo esta crônica completa</span>
         <span>→</span>
       </button>
     </div>
 
-    <!-- Prova Social Crível -->
+    <!-- Prova Social -->
     <div class="social-proof-box">
       <div class="social-proof-header">
         <div><strong>+18.400 leitores sensíveis</strong> todo domingo</div>
@@ -780,7 +1012,9 @@
     <div class="footer-content">
       <div>© 2026 the stories 🧸 · Histórias para ler e sentir</div>
       <div class="footer-links">
-        <a href="https://feeds.feedburner.com/thestoriescc" target="_blank" rel="noreferrer">Feed RSS</a>
+        <a href="https://thestories.cc/radio" target="_blank" rel="noopener noreferrer">📻 Rádio</a>
+        <a href="https://thestories.cc/pix" target="_blank" rel="noopener noreferrer">💛 PIX</a>
+        <a href="https://feeds.feedburner.com/thestoriescc" target="_blank" rel="noopener noreferrer">Feed RSS</a>
         <a href="mailto:contato@thestories.cc">Contato</a>
       </div>
     </div>
@@ -809,35 +1043,44 @@
     </div>
   </div>
 
-  <!-- JavaScript Nativo e Puro (Alternância Claro/Escuro e Modal) -->
+  <!-- JavaScript Nativo e Puro -->
   <script>
-    // Inicialização do tema salvo no localStorage ou preferência do sistema
     (function initTheme() {
-      var savedTheme = localStorage.getItem('thestories_theme');
-      if (savedTheme) {
-        document.documentElement.setAttribute('data-theme', savedTheme);
-      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
+      try {
+        var savedTheme = localStorage.getItem('thestories_theme');
+        if (savedTheme) {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch (e) {}
     })();
 
-    // Função de alternância do tema Sol/Lua
     function toggleTheme() {
       var current = document.documentElement.getAttribute('data-theme');
       var newTheme = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('thestories_theme', newTheme);
+      try {
+        localStorage.setItem('thestories_theme', newTheme);
+      } catch (e) {}
     }
 
-    // Modal de Leitura
     function openStoryModal() {
-      document.getElementById('storyModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
+      var modal = document.getElementById('storyModal');
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
     }
 
     function closeStoryModal() {
-      document.getElementById('storyModal').classList.remove('active');
-      document.body.style.overflow = '';
+      var modal = document.getElementById('storyModal');
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
     }
 
     function closeModalAndScroll() {
@@ -846,13 +1089,16 @@
       if (form) {
         form.scrollIntoView({ behavior: 'smooth' });
         var emailInput = form.querySelector('input[type="email"]');
-        if (emailInput) emailInput.focus();
+        if (emailInput) {
+          setTimeout(function() {
+            emailInput.focus();
+          }, 400);
+        }
       }
     }
 
-    // Fechar modal com tecla ESC
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
+      if (e.key === 'Escape' || e.keyCode === 27) {
         closeStoryModal();
       }
     });

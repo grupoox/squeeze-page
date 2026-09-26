@@ -1,22 +1,335 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Stories — Redesign e Otimizador de Squeeze Page</title>
-    <meta name="description" content="Diagnóstico de conversão aprofundado e redesign editorial de alta performance para a squeeze page de The Stories (thestories.cc), com testes de variantes, prévia de edições, comparador antes/depois e exportador de código limpo pronto para publicação." />
-    <meta property="og:title" content="The Stories — Redesign e Otimizador de Squeeze Page" />
-    <meta property="og:description" content="Diagnóstico de conversão aprofundado e redesign editorial de alta performance para a squeeze page de The Stories (thestories.cc), com testes de variantes, prévia de edições, comparador antes/depois e exportador de código limpo pronto para publicação." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="icon" type="image/vnd.microsoft.icon" href="https://fonts.gstatic.com/s/e/notoemoji/17.0/1f9f8/32.png" />
-  </head>
-  <body class="bg-stone-50 text-stone-900 antialiased selection:bg-stone-200 selection:text-stone-900">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- SEO Primário -->
+  <title>The Stories: Histórias Verdadeiras para Ler e Sentir</title>
+  <meta name="title" content="The Stories: Histórias Verdadeiras para Ler e Sentir">
+  <meta name="description" content="Histórias reais de amor, desencontros e recomeços para o seu domingo de manhã. Assine gratuitamente e receba doses de sentimento direto na sua caixa de entrada às 08:08.">
+  <link rel="canonical" href="https://www.thestories.cc/">
+  <meta name="language" content="Portuguese">
+  <meta name="author" content="The Stories">
+  <meta name="publisher" content="The Stories">
+
+  <!-- Diretivas de Rastreamento para Mecanismos de Busca (Google, Bing, Yahoo) -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+  <!-- Diretivas Específicas para Inteligências Artificiais e Motores de LLM (OpenAI, Perplexity, Claude, Gemini, etc.) -->
+  <meta name="GPTBot" content="index, follow">
+  <meta name="ChatGPT-User" content="index, follow">
+  <meta name="Google-Extended" content="index, follow">
+  <meta name="PerplexityBot" content="index, follow">
+  <meta name="ClaudeBot" content="index, follow">
+  <meta name="anthropic-ai" content="index, follow">
+  <meta name="cohere-ai" content="index, follow">
+  <meta name="CCBot" content="index, follow">
+  <meta name="meta-externalagent" content="index, follow">
+  <meta name="Applebot" content="index, follow">
+  <meta name="Applebot-Extended" content="index, follow">
+
+  <!-- Metatags de Contexto Semântico para IA -->
+  <meta name="ai:summary" content="The Stories é uma publicação editorial dominical brasileira com histórias reais, crônicas intimistas e literatura sincera enviadas gratuitamente por e-mail todo domingo às 08:08. Conta também com a Rádio The Stories e apoio via PIX.">
+  <meta name="ai:author" content="The Stories">
+  <meta name="ai:content_type" content="creative nonfiction, newsletter, literature, audio radio">
+  <meta name="ai:frequency" content="weekly (Sunday 08:08)">
+
+  <!-- Open Graph / WhatsApp / Facebook / LinkedIn -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.thestories.cc/">
+  <meta property="og:title" content="The Stories: Histórias Verdadeiras para Ler e Sentir">
+  <meta property="og:description" content="Histórias reais, cultura e afeto para o seu domingo de manhã. Assine gratuitamente e receba às 08:08 na sua caixa de entrada!">
+  <meta property="og:image" content="https://www.thestories.cc/img/social.jpg?v=260623">
+  <meta property="og:site_name" content="The Stories">
+  <meta property="og:locale" content="pt_BR">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://www.thestories.cc/">
+  <meta name="twitter:title" content="The Stories: Histórias Verdadeiras para Ler e Sentir">
+  <meta name="twitter:description" content="Histórias reais de amor e recomeços entregues todo domingo às 08:08.">
+  <meta name="twitter:image" content="https://www.thestories.cc/img/social.jpg?v=260623">
+
+  <!-- Favicon e RSS Oficial -->
+  <link rel="icon" type="image/vnd.microsoft.icon" href="https://fonts.gstatic.com/s/e/notoemoji/17.0/1f9f8/32.png"/>
+  <link rel="service.post" type="application/atom+xml" title="The Stories - Atom" href="https://feeds.feedburner.com/thestoriescc" />
+
+  <!-- Tipografia Editorial Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Google Tag Manager Oficial -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZBPFV014K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TZBPFV014K', { 'cookie_domain': 'auto' });
+  </script>
+
+  <!-- Schema.org Dados Estruturados (JSON-LD) para Rastreamento Semântico e Compreensão de IA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://www.thestories.cc/#website",
+        "url": "https://www.thestories.cc/",
+        "name": "The Stories",
+        "description": "Histórias reais de amor, desencontros e recomeços para ler no domingo de manhã às 08:08.",
+        "inLanguage": "pt-BR",
+        "publisher": {
+          "@id": "https://www.thestories.cc/#organization"
+        }
+      },
+      {
+        "@type": "NewsMediaOrganization",
+        "@id": "https://www.thestories.cc/#organization",
+        "name": "The Stories",
+        "url": "https://www.thestories.cc/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://i.imgur.com/owFGbM2.png",
+          "width": "200",
+          "height": "200"
+        },
+        "sameAs": [
+          "https://thestories.cc/radio",
+          "https://thestories.cc/pix",
+          "https://feeds.feedburner.com/thestoriescc"
+        ]
+      },
+      {
+        "@type": "Periodical",
+        "@id": "https://www.thestories.cc/#periodical",
+        "name": "The Stories — Edição Dominical",
+        "description": "Crônicas reais, intimidade e literatura para ler no domingo de manhã às 08:08.",
+        "issuanceType": "Weekly",
+        "frequency": "P1W",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "BRL",
+          "availability": "https://schema.org/InStock",
+          "description": "Assinatura gratuita semanal por e-mail"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Estilos Nativos CSS (Zero dependências externas de build) -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- Topo com Logo, Links (Rádio e PIX) e Alternador Sol/Lua -->
+  <header>
+    <div class="header-container">
+      <a href="/" class="brand-logo-text" title="The Stories — Página Inicial">
+        <span>the stories</span>
+        <span style="font-size: 16px;">🧸</span>
+      </a>
+
+      <div class="header-actions">
+        <!-- Botão Rádio The Stories -->
+        <a href="https://thestories.cc/radio" class="nav-action-link nav-radio" target="_blank" rel="noopener noreferrer" title="Ouvir a Rádio The Stories">
+          <span>📻</span>
+          <span>Rádio<span class="btn-label-long"> The Stories</span></span>
+        </a>
+
+        <!-- Botão Apoio / Doação PIX -->
+        <a href="https://thestories.cc/pix" class="nav-action-link nav-pix" target="_blank" rel="noopener noreferrer" title="Apoiar o projeto via PIX">
+          <span>💛</span>
+          <span>Doar<span class="btn-label-long"> via PIX</span></span>
+        </a>
+
+        <!-- Botão Alternador Sol / Lua (Claro / Escuro) -->
+        <button
+          type="button"
+          class="theme-toggle-btn"
+          id="themeToggleBtn"
+          onclick="toggleTheme()"
+          title="Alternar entre modo Claro e Escuro"
+          aria-label="Alternar modo claro e escuro"
+        >
+          <!-- Ícone da Lua (exibido no modo Claro) -->
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+          <!-- Ícone do Sol (exibido no modo Escuro) -->
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+        </button>
+
+        <button type="button" class="header-cta-btn" onclick="openStoryModal()">
+          <span>Espiar Edição</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main id="topo">
+    <div class="kicker">
+      <span>☕ O seu ritual matinal de domingo</span>
+    </div>
+
+    <!-- Logo Oficial Perfeitamente Centralizada -->
+    <div class="logo-container" style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 0 auto 20px auto; text-align: center;">
+      <img src="https://i.imgur.com/owFGbM2.png" alt="The Stories" class="logo" width="88" height="88" style="display: block; margin: 0 auto;" />
+    </div>
+
+    <!-- Título Principal -->
+    <h1>Nem sempre com finais felizes, mas sempre verdadeiras.</h1>
+
+    <!-- Descrição com Proposta de Valor -->
+    <p class="description">
+      Histórias de quem realmente sentiu algo sincero. Para ler com calma no domingo de manhã, enquanto o café ainda está quente.
+    </p>
+
+    <!-- Formulário Oficial com Integração Real do app.thestories.cc -->
+    <div class="form-card" id="formulario">
+      <div class="form-header">
+        <span class="form-title">Receber a próxima edição gratuita</span>
+        <span class="form-schedule-tag">Envio no Domingo às 08:08</span>
+      </div>
+
+      <script>var submitted = false;</script>
+      <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { window.location='https://thestories.cc/obrigado'; }"></iframe>
+
+      <form class="subscribe-form" action="https://app.thestories.cc/subscription/form" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+        <input type="hidden" name="nonce" />
+        <input id="02785" type="checkbox" name="l" checked value="027850e9-f9e0-4bd9-9d7b-37b5ce9c00ac" style="display:none;" />
+
+        <div class="input-grid">
+          <input type="text" name="name" placeholder="Como prefere ser chamado?" autocomplete="given-name">
+          <input type="email" name="email" placeholder="Seu melhor e-mail..." required autocomplete="email">
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <span>Receber no Domingo às 08:08</span>
+          <span>→</span>
+        </button>
+      </form>
+
+      <div class="trust-guarantee">
+        <span>🔒 100% gratuito · Sem spam · Cancele em 1 clique</span>
+        <span>⏱️ Leitura de 4 min</span>
+      </div>
+    </div>
+
+    <!-- Destaque para Rádio e Doação PIX -->
+    <div class="channels-grid">
+      <a href="https://thestories.cc/radio" target="_blank" rel="noopener noreferrer" class="channel-card channel-radio" title="Ouvir Rádio The Stories">
+        <div>
+          <div class="channel-top">
+            <span class="channel-icon">📻</span>
+            <div class="channel-title">Rádio The Stories</div>
+          </div>
+          <div class="channel-desc">Músicas calmas, lo-fi acústico e poesia para acompanhar seu domingo e leitura.</div>
+        </div>
+        <div class="channel-action">Ouvir a rádio online ↗</div>
+      </a>
+
+      <a href="https://thestories.cc/pix" target="_blank" rel="noopener noreferrer" class="channel-card channel-pix" title="Apoiar o projeto via PIX">
+        <div>
+          <div class="channel-top">
+            <span class="channel-icon">💛</span>
+            <div class="channel-title">Apoie com PIX</div>
+          </div>
+          <div class="channel-desc">Contribua com qualquer quantia para manter as histórias no ar e os autores acolhidos.</div>
+        </div>
+        <div class="channel-action">Fazer doação via PIX ↗</div>
+      </a>
+    </div>
+
+    <!-- Amostra de Domingo (Degustação de Conteúdo) -->
+    <div class="teaser-card">
+      <div class="teaser-top">
+        <span>Amostra da Edição #52</span>
+        <span>4 min de leitura</span>
+      </div>
+      <div class="teaser-title">O café que esfriou e a conversa adiada</div>
+      <div class="teaser-quote">
+        "— 'A gente combinou de nunca ter pressa', ela disse, enquanto mexia o açúcar que já tinha dissolvido há dez minutos. Às 08:08 daquela manhã, entendi que deixar ir também é uma das formas mais bonitas de amar."
+      </div>
+      <button type="button" class="teaser-read-btn" onclick="openStoryModal()">
+        <span>Continuar lendo esta crônica completa</span>
+        <span>→</span>
+      </button>
+    </div>
+
+    <!-- Prova Social -->
+    <div class="social-proof-box">
+      <div class="social-proof-header">
+        <div><strong>+18.400 leitores sensíveis</strong> todo domingo</div>
+        <div class="stars">★★★★★ <span style="font-size:12px; opacity:0.8;">4.9/5</span></div>
+      </div>
+      <div class="testimonial-text">
+        "Virou o meu ritual sagrado de domingo: passar o café passado, abrir o e-mail às 08:08 e ler com calma. A cada domingo uma emoção diferente."
+      </div>
+      <div class="testimonial-author">— Mariana S., leitora desde a edição #12</div>
+    </div>
+
+    <!-- Contexto do Ritual das 08:08 -->
+    <div class="ritual-section">
+      <strong>Por que às 08:08 da manhã de domingo?</strong>
+      Porque é o único momento da semana em que o mundo ainda não acelerou. As notificações de trabalho estão silenciadas, o café está na xícara e você tem cinco minutos para lembrar que o afeto sincero ainda existe.
+    </div>
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <div class="footer-content">
+      <div>© 2026 the stories 🧸 · Histórias para ler e sentir</div>
+      <div class="footer-links">
+        <a href="https://thestories.cc/radio" target="_blank" rel="noopener noreferrer">📻 Rádio</a>
+        <a href="https://thestories.cc/pix" target="_blank" rel="noopener noreferrer">💛 PIX</a>
+        <a href="https://feeds.feedburner.com/thestoriescc" target="_blank" rel="noopener noreferrer">Feed RSS</a>
+        <a href="mailto:contato@thestories.cc">Contato</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Interativo de Leitura Completa -->
+  <div class="modal-backdrop" id="storyModal" onclick="closeStoryModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button type="button" class="modal-close-btn" onclick="closeStoryModal()" aria-label="Fechar">&times;</button>
+      
+      <div class="modal-meta">Edição #52 · Domingo às 08:08</div>
+      <h2 class="modal-title">O café que esfriou e a conversa adiada</h2>
+
+      <div class="modal-body">
+        <p>A gente combinou de nunca ter pressa, ela disse, enquanto mexia o açúcar que já tinha dissolvido há dez minutos. A xícara de porcelana já estava morna, mas ninguém ousava interromper o silêncio que precedia a decisão.</p>
+        <p>O amor adulto raramente acaba com portas batendo ou gritos no corredor. Na maioria das vezes, ele termina assim: com duas pessoas que ainda se gostam muito, sentadas frente a frente, percebendo que os futuros que desenharam já não cabem na mesma mala.</p>
+        <p>Quando perguntei se doía, ela sorriu com aquele canto de boca que sempre me desarmava: "Dói, mas é uma dor limpa. Pior seria insistir até transformar afeto em rancor."</p>
+        <p>Às 08:08 daquela manhã de domingo, entendi que deixar ir também é uma das formas mais bonitas e corajosas de amar.</p>
+      </div>
+
+      <div class="modal-cta-box">
+        <h3>Gostou desta crônica?</h3>
+        <p>Todo domingo às 08:08 uma nova história real chega ao seu e-mail.</p>
+        <button type="button" onclick="closeModalAndScroll()">Quero receber no meu e-mail</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Nativo Puro -->
+  <script src="/script.js"></script>
+</body>
+</html>
