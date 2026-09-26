@@ -28,7 +28,7 @@
   <meta name="twitter:description" content="Histórias reais de amor e recomeços entregues todo domingo às 08:08.">
   <meta name="twitter:image" content="https://www.thestories.cc/img/social.jpg?v=260623">
 
-  <!-- Favicon e RSS -->
+  <!-- Favicon e RSS Oficial -->
   <link rel="icon" type="image/vnd.microsoft.icon" href="https://fonts.gstatic.com/s/e/notoemoji/17.0/1f9f8/32.png"/>
   <link rel="service.post" type="application/atom+xml" title="The Stories - Atom" href="https://feeds.feedburner.com/thestoriescc" />
 
@@ -37,7 +37,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Google Tag Manager (Seu ID Original) -->
+  <!-- Google Tag Manager (Seu ID de Produção) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZBPFV014K"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -55,16 +55,46 @@
       --text-subtle: #78716C;
       --border-color: #E7E5E4;
       --border-focus: #1C1917;
+      --input-bg: #FAFAF9;
       --btn-bg: #1C1917;
       --btn-hover: #292524;
       --btn-text: #FFFFFF;
+      --header-bg: rgba(250, 248, 245, 0.95);
+      --box-highlight: rgba(245, 245, 244, 0.6);
+      --border-dashed: #D6D3D1;
+      --quote-border: #D6D3D1;
+      --modal-bg: #FAF8F5;
+      --modal-card-bg: #FFFFFF;
+      --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.04);
       --max-width: 640px;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #121110;
+      --card-bg: #1A1918;
+      --text-main: #F5F5F4;
+      --text-muted: #A8A29E;
+      --text-subtle: #78716C;
+      --border-color: #2E2C29;
+      --border-focus: #F5F5F4;
+      --input-bg: #22201E;
+      --btn-bg: #F5F5F4;
+      --btn-hover: #FFFFFF;
+      --btn-text: #121110;
+      --header-bg: rgba(18, 17, 16, 0.95);
+      --box-highlight: rgba(30, 28, 26, 0.7);
+      --border-dashed: #3E3B37;
+      --quote-border: #44403C;
+      --modal-bg: #1A1918;
+      --modal-card-bg: #22201E;
+      --shadow-soft: 0 4px 25px rgba(0, 0, 0, 0.4);
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
     }
 
     body {
@@ -83,12 +113,12 @@
     header {
       width: 100%;
       border-bottom: 1px solid var(--border-color);
-      padding: 16px 24px;
-      background: rgba(250, 248, 245, 0.95);
+      padding: 14px 24px;
+      background: var(--header-bg);
       backdrop-filter: blur(8px);
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 30;
     }
 
     .header-container {
@@ -111,6 +141,12 @@
       gap: 6px;
     }
 
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
     .header-badge {
       font-size: 13px;
       color: var(--text-subtle);
@@ -120,20 +156,54 @@
       gap: 6px;
     }
 
+    .theme-toggle-btn {
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .theme-toggle-btn:hover {
+      border-color: var(--border-focus);
+      transform: scale(1.03);
+    }
+
+    .theme-toggle-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2;
+    }
+
+    .icon-sun { display: none; }
+    .icon-moon { display: block; }
+    [data-theme="dark"] .icon-sun { display: block; }
+    [data-theme="dark"] .icon-moon { display: none; }
+
     .header-cta-btn {
       font-size: 12px;
       font-weight: 600;
       background: transparent;
       color: var(--text-main);
-      border: 1px solid #D6D3D1;
-      padding: 6px 14px;
+      border: 1px solid var(--border-color);
+      padding: 8px 14px;
       border-radius: 8px;
       cursor: pointer;
-      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .header-cta-btn:hover {
-      background: #F5F5F4;
+      background: var(--card-bg);
+      border-color: var(--border-focus);
     }
 
     main {
@@ -162,8 +232,9 @@
       object-fit: contain;
       border-radius: 18px;
       margin-bottom: 20px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--border-color);
+      background: #FFFFFF;
     }
 
     h1 {
@@ -192,7 +263,7 @@
       border: 1px solid var(--border-color);
       border-radius: 20px;
       padding: 28px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      box-shadow: var(--shadow-soft);
       margin-bottom: 28px;
       text-align: left;
     }
@@ -209,12 +280,12 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1.2px;
-      color: #A8A29E;
+      color: var(--text-subtle);
     }
 
     .form-schedule-tag {
       font-size: 11px;
-      color: #78716C;
+      color: var(--text-subtle);
     }
 
     .subscribe-form {
@@ -235,23 +306,23 @@
       padding: 14px 16px;
       font-size: 14px;
       font-family: inherit;
-      border: 1px solid #D6D3D1;
+      border: 1px solid var(--border-color);
       border-radius: 12px;
       outline: none;
-      background: #FAFAF9;
+      background: var(--input-bg);
       color: var(--text-main);
-      transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
     }
 
     input[type="text"]:focus,
     input[type="email"]:focus {
       border-color: var(--border-focus);
-      background: #FFFFFF;
-      box-shadow: 0 0 0 3px rgba(28, 25, 23, 0.08);
+      background: var(--card-bg);
+      box-shadow: 0 0 0 3px rgba(120, 113, 108, 0.15);
     }
 
     input::placeholder {
-      color: #A8A29E;
+      color: var(--text-subtle);
+      opacity: 0.8;
     }
 
     button[type="submit"] {
@@ -264,7 +335,6 @@
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      transition: transform 0.15s, background-color 0.2s, box-shadow 0.2s;
       width: 100%;
       display: flex;
       align-items: center;
@@ -274,14 +344,14 @@
 
     button[type="submit"]:hover {
       background: var(--btn-hover);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       transform: translateY(-1px);
     }
 
     .trust-guarantee {
       margin-top: 14px;
       padding-top: 12px;
-      border-top: 1px solid #F5F5F4;
+      border-top: 1px solid var(--border-color);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -290,7 +360,7 @@
     }
 
     .teaser-card {
-      background: #FFFFFF;
+      background: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 18px;
       padding: 24px;
@@ -305,7 +375,7 @@
       margin-bottom: 12px;
       font-size: 11px;
       font-weight: 600;
-      color: #78716C;
+      color: var(--text-subtle);
       text-transform: uppercase;
       letter-spacing: 0.8px;
     }
@@ -323,9 +393,9 @@
       font-style: italic;
       font-size: 17px;
       line-height: 1.6;
-      border-left: 2px solid #D6D3D1;
+      border-left: 2px solid var(--quote-border);
       padding-left: 14px;
-      color: #292524;
+      color: var(--text-muted);
       margin-bottom: 16px;
     }
 
@@ -352,7 +422,7 @@
       border: 1px solid var(--border-color);
       border-radius: 16px;
       padding: 20px 24px;
-      background: rgba(245, 245, 244, 0.5);
+      background: var(--box-highlight);
       margin-bottom: 24px;
       text-align: left;
     }
@@ -376,13 +446,13 @@
     .testimonial-text {
       font-size: 13px;
       font-style: italic;
-      color: #44403C;
+      color: var(--text-muted);
       line-height: 1.5;
     }
 
     .testimonial-author {
       font-size: 11px;
-      color: #78716C;
+      color: var(--text-subtle);
       margin-top: 6px;
       text-align: right;
     }
@@ -390,7 +460,7 @@
     .ritual-section {
       padding: 20px;
       border-radius: 14px;
-      border: 1px dashed #D6D3D1;
+      border: 1px dashed var(--border-dashed);
       font-size: 13px;
       color: var(--text-muted);
       line-height: 1.6;
@@ -441,7 +511,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.65);
       backdrop-filter: blur(4px);
       z-index: 100;
       align-items: center;
@@ -454,15 +524,16 @@
     }
 
     .modal-card {
-      background: #FAF8F5;
+      background: var(--modal-bg);
+      color: var(--text-main);
       max-width: 620px;
       width: 100%;
       max-height: 85vh;
       overflow-y: auto;
       border-radius: 20px;
       padding: 32px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      border: 1px solid #E7E5E4;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-color);
       text-align: left;
       position: relative;
     }
@@ -473,8 +544,8 @@
       right: 20px;
       background: none;
       border: none;
-      font-size: 22px;
-      color: #78716C;
+      font-size: 24px;
+      color: var(--text-subtle);
       cursor: pointer;
       line-height: 1;
       padding: 4px 8px;
@@ -482,8 +553,8 @@
     }
 
     .modal-close-btn:hover {
-      background: #E7E5E4;
-      color: #1C1917;
+      background: var(--border-color);
+      color: var(--text-main);
     }
 
     .modal-meta {
@@ -491,7 +562,7 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: #78716C;
+      color: var(--text-subtle);
       margin-bottom: 8px;
     }
 
@@ -500,13 +571,14 @@
       font-size: 28px;
       line-height: 1.25;
       margin-bottom: 16px;
+      color: var(--text-main);
     }
 
     .modal-body {
       font-family: 'Newsreader', Georgia, serif;
       font-size: 18px;
       line-height: 1.7;
-      color: #292524;
+      color: var(--text-muted);
     }
 
     .modal-body p {
@@ -516,9 +588,9 @@
     .modal-cta-box {
       margin-top: 24px;
       padding: 20px;
-      background: #FFFFFF;
+      background: var(--modal-card-bg);
       border-radius: 14px;
-      border: 1px solid #E7E5E4;
+      border: 1px solid var(--border-color);
       text-align: center;
     }
 
@@ -526,6 +598,7 @@
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 20px;
       margin-bottom: 6px;
+      color: var(--text-main);
     }
 
     .modal-cta-box p {
@@ -536,7 +609,7 @@
 
     .modal-cta-box button {
       background: var(--btn-bg);
-      color: #FFFFFF;
+      color: var(--btn-text);
       border: none;
       padding: 12px 20px;
       border-radius: 10px;
@@ -565,13 +638,39 @@
         <span style="font-size: 16px;">🧸</span>
       </a>
 
-      <div class="header-badge">
-        <span>☕ Todo domingo às 08:08</span>
-      </div>
+      <div class="header-right">
+        <div class="header-badge">
+          <span>☕ Domingo, 08:08</span>
+        </div>
 
-      <button type="button" class="header-cta-btn" onclick="openStoryModal()">
-        Espiar Edição
-      </button>
+        <button
+          type="button"
+          class="theme-toggle-btn"
+          id="themeToggleBtn"
+          onclick="toggleTheme()"
+          title="Alternar entre modo Claro e Escuro"
+          aria-label="Alternar modo claro e escuro"
+        >
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+        </button>
+
+        <button type="button" class="header-cta-btn" onclick="openStoryModal()">
+          <span>Espiar Edição</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -639,7 +738,7 @@
     <div class="social-proof-box">
       <div class="social-proof-header">
         <div><strong>+18.400 leitores sensíveis</strong> todo domingo</div>
-        <div class="stars">★★★★★ <span style="color:#57534E; font-size:12px;">4.9/5</span></div>
+        <div class="stars">★★★★★ <span style="font-size:12px; opacity:0.8;">4.9/5</span></div>
       </div>
       <div class="testimonial-text">
         "Virou o meu ritual sagrado de domingo: passar o café passado, abrir o e-mail às 08:08 e ler com calma. A cada domingo uma emoção diferente."
@@ -686,12 +785,28 @@
   </div>
 
   <script>
+    (function initTheme() {
+      var savedTheme = localStorage.getItem('thestories_theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+
+    function toggleTheme() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var newTheme = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('thestories_theme', newTheme);
+    }
+
     function openStoryModal() {
       document.getElementById('storyModal').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
-    function closeStoryModal(e) {
+    function closeStoryModal() {
       document.getElementById('storyModal').classList.remove('active');
       document.body.style.overflow = '';
     }

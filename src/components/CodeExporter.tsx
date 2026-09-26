@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Copy, Check, Download, Code2, FileCode, CheckCircle2, Server, Eye, ExternalLink } from 'lucide-react';
+import { Copy, Check, Download, FileCode, CheckCircle2, Server, Eye } from 'lucide-react';
 import { SqueezePageConfig } from '../types';
 
 interface CodeExporterProps {
@@ -7,10 +7,10 @@ interface CodeExporterProps {
 }
 
 export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
-  const [copiedType, setCopiedType] = useState<'html' | 'react' | null>(null);
-  const [exportTab, setExportTab] = useState<'html' | 'preview'>('html');
+  const [copiedType, setCopiedType] = useState<'html' | null>(null);
+  const [exportTab, setExportTab] = useState<'html' | 'preview'>('preview');
 
-  // Pure standalone HTML/CSS/JS ready for any static web host
+  // Pure standalone HTML/CSS/JS ready for any static web host with Light/Dark sun/moon toggle
   const standaloneHtml = `<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -60,6 +60,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
   </script>
 
   <style>
+    /* Variáveis do Tema Claro */
     :root {
       --bg-color: #FAF8F5;
       --card-bg: #FFFFFF;
@@ -68,16 +69,49 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       --text-subtle: #78716C;
       --border-color: #E7E5E4;
       --border-focus: #1C1917;
+      --input-bg: #FAFAF9;
       --btn-bg: #1C1917;
       --btn-hover: #292524;
       --btn-text: #FFFFFF;
+      --header-bg: rgba(250, 248, 245, 0.95);
+      --box-highlight: rgba(245, 245, 244, 0.6);
+      --border-dashed: #D6D3D1;
+      --quote-border: #D6D3D1;
+      --modal-bg: #FAF8F5;
+      --modal-card-bg: #FFFFFF;
+      --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.04);
       --max-width: 640px;
     }
+
+    /* Variáveis do Tema Escuro */
+    [data-theme="dark"] {
+      --bg-color: #121110;
+      --card-bg: #1A1918;
+      --text-main: #F5F5F4;
+      --text-muted: #A8A29E;
+      --text-subtle: #78716C;
+      --border-color: #2E2C29;
+      --border-focus: #F5F5F4;
+      --input-bg: #22201E;
+      --btn-bg: #F5F5F4;
+      --btn-hover: #FFFFFF;
+      --btn-text: #121110;
+      --header-bg: rgba(18, 17, 16, 0.95);
+      --box-highlight: rgba(30, 28, 26, 0.7);
+      --border-dashed: #3E3B37;
+      --quote-border: #44403C;
+      --modal-bg: #1A1918;
+      --modal-card-bg: #22201E;
+      --shadow-soft: 0 4px 25px rgba(0, 0, 0, 0.4);
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
     }
+
     body {
       font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       background-color: var(--bg-color);
@@ -90,16 +124,18 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       -webkit-font-smoothing: antialiased;
       position: relative;
     }
+
     header {
       width: 100%;
       border-bottom: 1px solid var(--border-color);
-      padding: 16px 24px;
-      background: rgba(250, 248, 245, 0.95);
+      padding: 14px 24px;
+      background: var(--header-bg);
       backdrop-filter: blur(8px);
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 30;
     }
+
     .header-container {
       max-width: 900px;
       margin: 0 auto;
@@ -107,6 +143,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       align-items: center;
       justify-content: space-between;
     }
+
     .brand-logo-text {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 24px;
@@ -118,6 +155,13 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       align-items: center;
       gap: 6px;
     }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
     .header-badge {
       font-size: 13px;
       color: var(--text-subtle);
@@ -126,20 +170,57 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       align-items: center;
       gap: 6px;
     }
+
+    .theme-toggle-btn {
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .theme-toggle-btn:hover {
+      border-color: var(--border-focus);
+      transform: scale(1.03);
+    }
+
+    .theme-toggle-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2;
+    }
+
+    .icon-sun { display: none; }
+    .icon-moon { display: block; }
+    [data-theme="dark"] .icon-sun { display: block; }
+    [data-theme="dark"] .icon-moon { display: none; }
+
     .header-cta-btn {
       font-size: 12px;
       font-weight: 600;
       background: transparent;
       color: var(--text-main);
-      border: 1px solid #D6D3D1;
-      padding: 6px 14px;
+      border: 1px solid var(--border-color);
+      padding: 8px 14px;
       border-radius: 8px;
       cursor: pointer;
-      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
+
     .header-cta-btn:hover {
-      background: #F5F5F4;
+      background: var(--card-bg);
+      border-color: var(--border-focus);
     }
+
     main {
       max-width: var(--max-width);
       width: 100%;
@@ -147,6 +228,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       padding: 40px 20px 60px 20px;
       text-align: center;
     }
+
     .kicker {
       display: inline-flex;
       align-items: center;
@@ -158,15 +240,18 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       color: var(--text-subtle);
       margin-bottom: 20px;
     }
+
     .logo {
       width: 84px;
       height: 84px;
       object-fit: contain;
       border-radius: 18px;
       margin-bottom: 20px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--border-color);
+      background: #FFFFFF;
     }
+
     h1 {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 42px;
@@ -176,6 +261,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       margin-bottom: 16px;
       color: var(--text-main);
     }
+
     .description {
       font-family: 'Newsreader', Georgia, serif;
       font-size: 20px;
@@ -186,64 +272,74 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       margin-left: auto;
       margin-right: auto;
     }
+
     .form-card {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 20px;
       padding: 28px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      box-shadow: var(--shadow-soft);
       margin-bottom: 28px;
       text-align: left;
     }
+
     .form-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 16px;
     }
+
     .form-title {
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1.2px;
-      color: #A8A29E;
+      color: var(--text-subtle);
     }
+
     .form-schedule-tag {
       font-size: 11px;
-      color: #78716C;
+      color: var(--text-subtle);
     }
+
     .subscribe-form {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
+
     .input-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
     }
+
     input[type="text"],
     input[type="email"] {
       width: 100%;
       padding: 14px 16px;
       font-size: 14px;
       font-family: inherit;
-      border: 1px solid #D6D3D1;
+      border: 1px solid var(--border-color);
       border-radius: 12px;
       outline: none;
-      background: #FAFAF9;
+      background: var(--input-bg);
       color: var(--text-main);
-      transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
     }
+
     input[type="text"]:focus,
     input[type="email"]:focus {
       border-color: var(--border-focus);
-      background: #FFFFFF;
-      box-shadow: 0 0 0 3px rgba(28, 25, 23, 0.08);
+      background: var(--card-bg);
+      box-shadow: 0 0 0 3px rgba(120, 113, 108, 0.15);
     }
+
     input::placeholder {
-      color: #A8A29E;
+      color: var(--text-subtle);
+      opacity: 0.8;
     }
+
     button[type="submit"] {
       padding: 16px 24px;
       font-size: 15px;
@@ -254,36 +350,39 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       border: none;
       border-radius: 12px;
       cursor: pointer;
-      transition: transform 0.15s, background-color 0.2s, box-shadow 0.2s;
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
     }
+
     button[type="submit"]:hover {
       background: var(--btn-hover);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       transform: translateY(-1px);
     }
+
     .trust-guarantee {
       margin-top: 14px;
       padding-top: 12px;
-      border-top: 1px solid #F5F5F4;
+      border-top: 1px solid var(--border-color);
       display: flex;
       align-items: center;
       justify-content: space-between;
       font-size: 12px;
       color: var(--text-subtle);
     }
+
     .teaser-card {
-      background: #FFFFFF;
+      background: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 18px;
       padding: 24px;
       margin-bottom: 24px;
       text-align: left;
     }
+
     .teaser-top {
       display: flex;
       justify-content: space-between;
@@ -291,10 +390,11 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       margin-bottom: 12px;
       font-size: 11px;
       font-weight: 600;
-      color: #78716C;
+      color: var(--text-subtle);
       text-transform: uppercase;
       letter-spacing: 0.8px;
     }
+
     .teaser-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 21px;
@@ -302,16 +402,18 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       color: var(--text-main);
       margin-bottom: 10px;
     }
+
     .teaser-quote {
       font-family: 'Newsreader', Georgia, serif;
       font-style: italic;
       font-size: 17px;
       line-height: 1.6;
-      border-left: 2px solid #D6D3D1;
+      border-left: 2px solid var(--quote-border);
       padding-left: 14px;
-      color: #292524;
+      color: var(--text-muted);
       margin-bottom: 16px;
     }
+
     .teaser-read-btn {
       display: inline-flex;
       align-items: center;
@@ -325,18 +427,21 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       cursor: pointer;
       padding: 0;
     }
+
     .teaser-read-btn:hover {
       text-decoration: underline;
       text-underline-offset: 4px;
     }
+
     .social-proof-box {
       border: 1px solid var(--border-color);
       border-radius: 16px;
       padding: 20px 24px;
-      background: rgba(245, 245, 244, 0.5);
+      background: var(--box-highlight);
       margin-bottom: 24px;
       text-align: left;
     }
+
     .social-proof-header {
       display: flex;
       align-items: center;
@@ -347,31 +452,36 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       flex-wrap: wrap;
       gap: 8px;
     }
+
     .stars {
       color: #F59E0B;
       letter-spacing: 2px;
     }
+
     .testimonial-text {
       font-size: 13px;
       font-style: italic;
-      color: #44403C;
+      color: var(--text-muted);
       line-height: 1.5;
     }
+
     .testimonial-author {
       font-size: 11px;
-      color: #78716C;
+      color: var(--text-subtle);
       margin-top: 6px;
       text-align: right;
     }
+
     .ritual-section {
       padding: 20px;
       border-radius: 14px;
-      border: 1px dashed #D6D3D1;
+      border: 1px dashed var(--border-dashed);
       font-size: 13px;
       color: var(--text-muted);
       line-height: 1.6;
       margin-bottom: 32px;
     }
+
     .ritual-section strong {
       color: var(--text-main);
       display: block;
@@ -380,6 +490,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       font-size: 17px;
       font-weight: 600;
     }
+
     footer {
       border-top: 1px solid var(--border-color);
       padding: 24px;
@@ -387,6 +498,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       color: var(--text-subtle);
       text-align: center;
     }
+
     .footer-content {
       max-width: 900px;
       margin: 0 auto;
@@ -396,14 +508,17 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       flex-wrap: wrap;
       gap: 12px;
     }
+
     .footer-links a {
       color: var(--text-subtle);
       text-decoration: none;
       margin-left: 14px;
     }
+
     .footer-links a:hover {
       text-decoration: underline;
     }
+
     .modal-backdrop {
       display: none;
       position: fixed;
@@ -411,90 +526,105 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.65);
       backdrop-filter: blur(4px);
       z-index: 100;
       align-items: center;
       justify-content: center;
       padding: 16px;
     }
+
     .modal-backdrop.active {
       display: flex;
     }
+
     .modal-card {
-      background: #FAF8F5;
+      background: var(--modal-bg);
+      color: var(--text-main);
       max-width: 620px;
       width: 100%;
       max-height: 85vh;
       overflow-y: auto;
       border-radius: 20px;
       padding: 32px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      border: 1px solid #E7E5E4;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--border-color);
       text-align: left;
       position: relative;
     }
+
     .modal-close-btn {
       position: absolute;
       top: 20px;
       right: 20px;
       background: none;
       border: none;
-      font-size: 22px;
-      color: #78716C;
+      font-size: 24px;
+      color: var(--text-subtle);
       cursor: pointer;
       line-height: 1;
       padding: 4px 8px;
       border-radius: 6px;
     }
+
     .modal-close-btn:hover {
-      background: #E7E5E4;
-      color: #1C1917;
+      background: var(--border-color);
+      color: var(--text-main);
     }
+
     .modal-meta {
       font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: #78716C;
+      color: var(--text-subtle);
       margin-bottom: 8px;
     }
+
     .modal-title {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 28px;
       line-height: 1.25;
       margin-bottom: 16px;
+      color: var(--text-main);
     }
+
     .modal-body {
       font-family: 'Newsreader', Georgia, serif;
       font-size: 18px;
       line-height: 1.7;
-      color: #292524;
+      color: var(--text-muted);
     }
+
     .modal-body p {
       margin-bottom: 16px;
     }
+
     .modal-cta-box {
       margin-top: 24px;
       padding: 20px;
-      background: #FFFFFF;
+      background: var(--modal-card-bg);
       border-radius: 14px;
-      border: 1px solid #E7E5E4;
+      border: 1px solid var(--border-color);
       text-align: center;
     }
+
     .modal-cta-box h3 {
       font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 20px;
       margin-bottom: 6px;
+      color: var(--text-main);
     }
+
     .modal-cta-box p {
       font-size: 13px;
       color: var(--text-muted);
       margin-bottom: 12px;
     }
+
     .modal-cta-box button {
       background: var(--btn-bg);
-      color: #FFFFFF;
+      color: var(--btn-text);
       border: none;
       padding: 12px 20px;
       border-radius: 10px;
@@ -502,6 +632,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       font-weight: 600;
       cursor: pointer;
     }
+
     @media (max-width: 640px) {
       h1 { font-size: 32px; }
       .description { font-size: 17px; }
@@ -522,13 +653,40 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
         <span style="font-size: 16px;">🧸</span>
       </a>
 
-      <div class="header-badge">
-        <span>☕ Todo domingo às 08:08</span>
-      </div>
+      <div class="header-right">
+        <div class="header-badge">
+          <span>☕ Domingo, 08:08</span>
+        </div>
 
-      <button type="button" class="header-cta-btn" onclick="openStoryModal()">
-        Espiar Edição
-      </button>
+        <!-- Botão Alternador Sol / Lua -->
+        <button
+          type="button"
+          class="theme-toggle-btn"
+          id="themeToggleBtn"
+          onclick="toggleTheme()"
+          title="Alternar entre modo Claro e Escuro"
+          aria-label="Alternar modo claro e escuro"
+        >
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+        </button>
+
+        <button type="button" class="header-cta-btn" onclick="openStoryModal()">
+          <span>Espiar Edição</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -541,10 +699,10 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
       <img src="https://i.imgur.com/owFGbM2.png" alt="The Stories" class="logo" />
     </div>
 
-    <h1>${config.headline}</h1>
+    <h1>\${config.headline}</h1>
 
     <p class="description">
-      ${config.subheadline}
+      \${config.subheadline}
     </p>
 
     <!-- Formulário Oficial com Integração Real do app.thestories.cc -->
@@ -567,7 +725,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
         </div>
 
         <button type="submit">
-          <span>${config.ctaText}</span>
+          <span>\${config.ctaText}</span>
           <span>→</span>
         </button>
       </form>
@@ -595,8 +753,8 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
 
     <div class="social-proof-box">
       <div class="social-proof-header">
-        <div><strong>${config.subscriberCount}</strong> todo domingo</div>
-        <div class="stars">★★★★★ <span style="color:#57534E; font-size:12px;">4.9/5</span></div>
+        <div><strong>\${config.subscriberCount}</strong> todo domingo</div>
+        <div class="stars">★★★★★ <span style="font-size:12px; opacity:0.8;">4.9/5</span></div>
       </div>
       <div class="testimonial-text">
         "Virou o meu ritual sagrado de domingo: passar o café passado, abrir o e-mail às 08:08 e ler com calma. A cada domingo uma emoção diferente."
@@ -643,12 +801,28 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
   </div>
 
   <script>
+    (function initTheme() {
+      var savedTheme = localStorage.getItem('thestories_theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+
+    function toggleTheme() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var newTheme = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('thestories_theme', newTheme);
+    }
+
     function openStoryModal() {
       document.getElementById('storyModal').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
-    function closeStoryModal(e) {
+    function closeStoryModal() {
       document.getElementById('storyModal').classList.remove('active');
       document.body.style.overflow = '';
     }
@@ -697,13 +871,13 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
         <div>
           <div className="text-xs font-semibold uppercase tracking-wider text-emerald-700 flex items-center gap-1.5 mb-1">
             <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-            <span>Arquivo HTML Estático Puro (Zero Dependências)</span>
+            <span>Versão 100% HTML + CSS + JS Puro (Sem Dependências)</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-serif-display font-medium text-stone-900">
-            Baixar index.html Pronto para sua Hospedagem
+            index.html com Botão Sol / Lua Embutido
           </h2>
           <p className="text-sm text-stone-600 font-sans mt-1">
-            Compatível com qualquer servidor: cPanel, Hostinger, Locaweb, Cloudflare Pages, Nginx, Apache ou FTP.
+            Pronto para subir no cPanel, Hostinger, Locaweb, Cloudflare Pages ou qualquer servidor FTP.
           </p>
         </div>
 
@@ -715,7 +889,7 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
             {copiedType === 'html' ? (
               <>
                 <Check className="w-4 h-4 text-emerald-400" />
-                <span>Copiado com Sucesso!</span>
+                <span>HTML Copiado!</span>
               </>
             ) : (
               <>
@@ -746,16 +920,27 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
             Clique no botão verde <strong>"Baixar index.html"</strong> acima (ou copie o código abaixo).
           </li>
           <li>
-            Acesse o gerenciador de arquivos da sua hospedagem (ex: <code>public_html</code> no cPanel, Hostinger ou Cloudflare).
+            Acesse o gerenciador de arquivos da sua hospedagem (ex: pasta <code>public_html</code>).
           </li>
           <li>
-            Faça backup do seu <code>index.html</code> antigo e envie este novo <code>index.html</code> para a raiz do seu domínio. Pronto! Ele já está conectado ao seu formulário oficial (<code>https://app.thestories.cc/subscription/form</code>) e ao Google Tag Manager.
+            Substitua seu arquivo <code>index.html</code> antigo por este. Ele já vem com o botão de Sol/Lua, formulário oficial conectado e leitor de crônicas embutido.
           </li>
         </ol>
       </div>
 
       {/* Navigation tabs */}
       <div className="flex items-center gap-2 border-b border-stone-200 pb-2">
+        <button
+          onClick={() => setExportTab('preview')}
+          className={`flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
+            exportTab === 'preview'
+              ? 'bg-stone-900 text-white shadow-2xs'
+              : 'text-stone-600 hover:text-stone-900'
+          }`}
+        >
+          <Eye className="w-4 h-4" />
+          <span>Prévia Real do HTML Puro (Teste o Sol / Lua aqui)</span>
+        </button>
         <button
           onClick={() => setExportTab('html')}
           className={`flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
@@ -767,21 +952,25 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
           <FileCode className="w-4 h-4" />
           <span>Ver Código Fonte HTML (index.html)</span>
         </button>
-        <button
-          onClick={() => setExportTab('preview')}
-          className={`flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-lg transition-all ${
-            exportTab === 'preview'
-              ? 'bg-stone-900 text-white shadow-2xs'
-              : 'text-stone-600 hover:text-stone-900'
-          }`}
-        >
-          <Eye className="w-4 h-4" />
-          <span>Prévia Real do HTML Puro no Navegador</span>
-        </button>
       </div>
 
       {/* Content Area */}
-      {exportTab === 'html' ? (
+      {exportTab === 'preview' ? (
+        <div className="rounded-2xl overflow-hidden border border-stone-300 shadow-md bg-white">
+          <div className="p-3 bg-stone-100 border-b border-stone-200 text-xs text-stone-600 flex items-center justify-between">
+            <span className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <strong>Arquivo HTML Puro:</strong> Clique no ícone de Sol/Lua no topo direito para alternar entre claro e escuro.
+            </span>
+            <span className="font-mono text-[11px] bg-stone-200 px-2 py-0.5 rounded">public/index.html</span>
+          </div>
+          <iframe
+            srcDoc={standaloneHtml}
+            title="Prévia do index.html puro com Sol e Lua"
+            className="w-full h-[720px] border-0"
+          />
+        </div>
+      ) : (
         <div className="relative rounded-2xl overflow-hidden border border-stone-800 bg-[#161514] text-stone-200 shadow-lg">
           <div className="flex items-center justify-between px-4 py-3 bg-[#1F1D1B] border-b border-stone-800 text-xs">
             <div className="flex items-center gap-2">
@@ -802,18 +991,6 @@ export const CodeExporter: React.FC<CodeExporterProps> = ({ config }) => {
           <pre className="p-5 font-mono text-xs overflow-x-auto max-h-[550px] leading-relaxed text-stone-300 selection:bg-stone-700">
             <code>{standaloneHtml}</code>
           </pre>
-        </div>
-      ) : (
-        <div className="rounded-2xl overflow-hidden border border-stone-300 shadow-md bg-white">
-          <div className="p-3 bg-stone-100 border-b border-stone-200 text-xs text-stone-600 flex items-center justify-between">
-            <span>Renderizado diretamente pelo navegador (iframe isolado do index.html puro):</span>
-            <span className="font-mono text-[11px] bg-stone-200 px-2 py-0.5 rounded">public/index.html</span>
-          </div>
-          <iframe
-            srcDoc={standaloneHtml}
-            title="Prévia do index.html puro"
-            className="w-full h-[700px] border-0"
-          />
         </div>
       )}
     </div>
