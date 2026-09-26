@@ -1,6 +1,6 @@
 /**
  * The Stories — Script Vanilla JS
- * Alternador Claro/Escuro (Sol/Lua), Leitor Modal e Redirecionamento
+ * Alternador Claro/Escuro (Sol/Lua), Menu Hambúrguer Mobile e Modal de Leitura
  */
 
 // Inicialização imediata do tema salvo no localStorage ou preferência do sistema
@@ -29,8 +29,37 @@ function toggleTheme() {
   } catch (e) {}
 }
 
+// Menu Hambúrguer Mobile
+function toggleMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  var btn = document.getElementById('hamburgerBtn');
+  var isOpen = document.body.classList.contains('menu-open');
+  if (isOpen) {
+    closeMobileMenu();
+  } else {
+    openMobileMenu();
+  }
+}
+
+function openMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  var btn = document.getElementById('hamburgerBtn');
+  if (menu) menu.classList.add('active');
+  if (btn) btn.setAttribute('aria-expanded', 'true');
+  document.body.classList.add('menu-open');
+}
+
+function closeMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  var btn = document.getElementById('hamburgerBtn');
+  if (menu) menu.classList.remove('active');
+  if (btn) btn.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('menu-open');
+}
+
 // Abrir o Modal de Leitura da Crônica
 function openStoryModal() {
+  closeMobileMenu();
   var modal = document.getElementById('storyModal');
   if (modal) {
     modal.classList.add('active');
@@ -62,9 +91,18 @@ function closeModalAndScroll() {
   }
 }
 
-// Fechar o modal ao pressionar a tecla ESC
+// Fechar modal ou menu mobile ao pressionar a tecla ESC
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' || e.keyCode === 27) {
     closeStoryModal();
+    closeMobileMenu();
+  }
+});
+
+// Fechar o menu mobile caso clique fora do cabeçalho
+document.addEventListener('click', function(e) {
+  var header = document.querySelector('header');
+  if (header && !header.contains(e.target) && document.body.classList.contains('menu-open')) {
+    closeMobileMenu();
   }
 });

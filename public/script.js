@@ -1,9 +1,8 @@
 /**
  * The Stories — Script Vanilla JS
- * Alternador Claro/Escuro (Sol/Lua), Leitor Modal e Redirecionamento
+ * Alternador Claro/Escuro (Sol/Lua), Menu Hambúrguer Mobile e Modal de Leitura
  */
 
-// Inicialização imediata do tema salvo no localStorage ou preferência do sistema
 (function initTheme() {
   try {
     var savedTheme = localStorage.getItem('thestories_theme');
@@ -14,12 +13,9 @@
     } else {
       document.documentElement.setAttribute('data-theme', 'light');
     }
-  } catch (e) {
-    // Ignora restrições de sandbox de iframe/localStorage
-  }
+  } catch (e) {}
 })();
 
-// Função para alternar o tema entre Claro e Escuro
 function toggleTheme() {
   var current = document.documentElement.getAttribute('data-theme');
   var newTheme = current === 'dark' ? 'light' : 'dark';
@@ -29,8 +25,35 @@ function toggleTheme() {
   } catch (e) {}
 }
 
-// Abrir o Modal de Leitura da Crônica
+function toggleMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  var btn = document.getElementById('hamburgerBtn');
+  var isOpen = document.body.classList.contains('menu-open');
+  if (isOpen) {
+    closeMobileMenu();
+  } else {
+    openMobileMenu();
+  }
+}
+
+function openMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  var btn = document.getElementById('hamburgerBtn');
+  if (menu) menu.classList.add('active');
+  if (btn) btn.setAttribute('aria-expanded', 'true');
+  document.body.classList.add('menu-open');
+}
+
+function closeMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  var btn = document.getElementById('hamburgerBtn');
+  if (menu) menu.classList.remove('active');
+  if (btn) btn.setAttribute('aria-expanded', 'false');
+  document.body.classList.remove('menu-open');
+}
+
 function openStoryModal() {
+  closeMobileMenu();
   var modal = document.getElementById('storyModal');
   if (modal) {
     modal.classList.add('active');
@@ -38,7 +61,6 @@ function openStoryModal() {
   }
 }
 
-// Fechar o Modal de Leitura
 function closeStoryModal() {
   var modal = document.getElementById('storyModal');
   if (modal) {
@@ -47,7 +69,6 @@ function closeStoryModal() {
   }
 }
 
-// Rolar suavemente até o formulário após ler no modal
 function closeModalAndScroll() {
   closeStoryModal();
   var form = document.getElementById('formulario');
@@ -62,9 +83,16 @@ function closeModalAndScroll() {
   }
 }
 
-// Fechar o modal ao pressionar a tecla ESC
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' || e.keyCode === 27) {
     closeStoryModal();
+    closeMobileMenu();
+  }
+});
+
+document.addEventListener('click', function(e) {
+  var header = document.querySelector('header');
+  if (header && !header.contains(e.target) && document.body.classList.contains('menu-open')) {
+    closeMobileMenu();
   }
 });

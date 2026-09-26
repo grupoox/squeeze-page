@@ -128,26 +128,36 @@
 </head>
 <body>
 
-  <!-- Topo com Logo, Links (Rádio e PIX) e Alternador Sol/Lua -->
+  <!-- Topo com Título The Stories em Uma Linha, Links Desktop, Alternador Sol/Lua e Botão Hambúrguer Mobile -->
   <header>
     <div class="header-container">
+      <!-- Marca The Stories: sempre em uma única linha (nowrap) -->
       <a href="/" class="brand-logo-text" title="The Stories — Página Inicial">
         <span>the stories</span>
         <span style="font-size: 16px;">🧸</span>
       </a>
 
+      <!-- Ações do Cabeçalho -->
       <div class="header-actions">
-        <!-- Botão Rádio The Stories -->
-        <a href="https://thestories.cc/radio" class="nav-action-link nav-radio" target="_blank" rel="noopener noreferrer" title="Ouvir a Rádio The Stories">
-          <span>📻</span>
-          <span>Rádio<span class="btn-label-long"> The Stories</span></span>
-        </a>
+        <!-- Navegação Desktop (Oculta no mobile para não poluir nem quebrar o cabeçalho) -->
+        <nav class="desktop-nav" aria-label="Navegação Principal">
+          <!-- Botão Rádio The Stories -->
+          <a href="https://thestories.cc/radio" class="nav-action-link nav-radio" target="_blank" rel="noopener noreferrer" title="Ouvir a Rádio The Stories">
+            <span>📻</span>
+            <span>Rádio The Stories</span>
+          </a>
 
-        <!-- Botão Apoio / Doação PIX -->
-        <a href="https://thestories.cc/pix" class="nav-action-link nav-pix" target="_blank" rel="noopener noreferrer" title="Apoiar o projeto via PIX">
-          <span>💛</span>
-          <span>Doar<span class="btn-label-long"> via PIX</span></span>
-        </a>
+          <!-- Botão Apoio / Doação PIX -->
+          <a href="https://thestories.cc/pix" class="nav-action-link nav-pix" target="_blank" rel="noopener noreferrer" title="Apoiar o projeto via PIX">
+            <span>💛</span>
+            <span>Doar via PIX</span>
+          </a>
+
+          <!-- Botão Espiar Edição -->
+          <button type="button" class="header-cta-btn" onclick="openStoryModal()">
+            <span>Espiar Edição</span>
+          </button>
+        </nav>
 
         <!-- Botão Alternador Sol / Lua (Claro / Escuro) -->
         <button
@@ -176,9 +186,51 @@
           </svg>
         </button>
 
-        <button type="button" class="header-cta-btn" onclick="openStoryModal()">
-          <span>Espiar Edição</span>
+        <!-- Botão Hambúrguer (Exibido exclusivamente no mobile) -->
+        <button
+          type="button"
+          class="hamburger-btn"
+          id="hamburgerBtn"
+          onclick="toggleMobileMenu()"
+          title="Abrir menu"
+          aria-label="Menu de navegação"
+          aria-expanded="false"
+        >
+          <!-- Ícone de 3 barras (quando fechado) -->
+          <svg class="icon-hamburger-bars" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <!-- Ícone de Fechar X (quando aberto) -->
+          <svg class="icon-hamburger-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
         </button>
+      </div>
+    </div>
+
+    <!-- Gaveta do Menu Mobile Dropdown (Aparece ao clicar no Hambúrguer) -->
+    <div class="mobile-menu-drawer" id="mobileMenu">
+      <a href="https://thestories.cc/radio" class="mobile-menu-link mobile-menu-link-radio" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()">
+        <span>📻 Ouvir Rádio The Stories</span>
+        <span>↗</span>
+      </a>
+
+      <a href="https://thestories.cc/pix" class="mobile-menu-link mobile-menu-link-pix" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()">
+        <span>💛 Apoiar o Projeto via PIX</span>
+        <span>↗</span>
+      </a>
+
+      <a href="#amostra" class="mobile-menu-link" onclick="openStoryModal()">
+        <span>📖 Espiar Edição #52 Completa</span>
+        <span>→</span>
+      </a>
+
+      <div class="mobile-menu-info">
+        <span>☕ Envio todo domingo às 08:08</span>
+        <span>🔒 100% gratuito</span>
       </div>
     </div>
   </header>
@@ -259,7 +311,7 @@
     </div>
 
     <!-- Amostra de Domingo (Degustação de Conteúdo) -->
-    <div class="teaser-card">
+    <div class="teaser-card" id="amostra">
       <div class="teaser-top">
         <span>Amostra da Edição #52</span>
         <span>4 min de leitura</span>

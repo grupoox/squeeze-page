@@ -136,7 +136,7 @@
       --btn-bg: #1C1917;
       --btn-hover: #292524;
       --btn-text: #FFFFFF;
-      --header-bg: rgba(250, 248, 245, 0.94);
+      --header-bg: rgba(250, 248, 245, 0.96);
       --box-highlight: rgba(245, 245, 244, 0.7);
       --border-dashed: #D6D3D1;
       --quote-border: #D6D3D1;
@@ -164,7 +164,7 @@
       --btn-bg: #F5F5F4;
       --btn-hover: #FFFFFF;
       --btn-text: #121110;
-      --header-bg: rgba(18, 17, 16, 0.94);
+      --header-bg: rgba(18, 17, 16, 0.96);
       --box-highlight: rgba(30, 28, 26, 0.75);
       --border-dashed: #3E3B37;
       --quote-border: #44403C;
@@ -195,6 +195,7 @@
       display: flex;
       flex-direction: column;
       -webkit-font-smoothing: antialiased;
+      position: relative;
     }
 
     header {
@@ -214,7 +215,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 12px;
     }
 
     .brand-logo-text {
@@ -224,16 +225,23 @@
       color: var(--text-main);
       text-decoration: none;
       letter-spacing: -0.5px;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .header-actions {
       display: flex;
       align-items: center;
+      gap: 8px;
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
       gap: 10px;
-      flex-wrap: wrap;
     }
 
     .nav-action-link {
@@ -246,6 +254,7 @@
       align-items: center;
       gap: 6px;
       transition: all 0.2s ease;
+      white-space: nowrap;
     }
 
     .nav-radio {
@@ -282,6 +291,7 @@
       padding: 0;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
       transition: all 0.2s ease;
+      flex-shrink: 0;
     }
 
     .theme-toggle-btn:hover {
@@ -313,11 +323,118 @@
       align-items: center;
       gap: 6px;
       transition: all 0.15s ease;
+      white-space: nowrap;
     }
 
     .header-cta-btn:hover {
       background: var(--card-bg);
       border-color: var(--border-focus);
+    }
+
+    .hamburger-btn {
+      display: none;
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .hamburger-btn:hover {
+      border-color: var(--border-focus);
+    }
+
+    .hamburger-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2;
+    }
+
+    .icon-hamburger-bars { display: block; }
+    .icon-hamburger-close { display: none; }
+
+    .menu-open .icon-hamburger-bars { display: none; }
+    .menu-open .icon-hamburger-close { display: block; }
+
+    .mobile-menu-drawer {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+      padding: 16px 20px 20px 20px;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 50;
+      animation: slideMenuDown 0.22s ease-out;
+    }
+
+    .mobile-menu-drawer.active {
+      display: flex;
+    }
+
+    @keyframes slideMenuDown {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .mobile-menu-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 14px;
+      font-weight: 600;
+      background: var(--input-bg);
+      border: 1px solid var(--border-color);
+      transition: all 0.15s ease;
+    }
+
+    .mobile-menu-link:hover,
+    .mobile-menu-link:active {
+      border-color: var(--border-focus);
+    }
+
+    .mobile-menu-link-radio {
+      background: var(--radio-badge-bg);
+      color: var(--radio-badge-text);
+      border-color: var(--radio-badge-border);
+    }
+
+    .mobile-menu-link-pix {
+      background: var(--pix-badge-bg);
+      color: var(--pix-badge-text);
+      border-color: var(--pix-badge-border);
+    }
+
+    .mobile-menu-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-subtle);
+      padding: 10px 4px 2px 4px;
+      border-top: 1px dashed var(--border-dashed);
     }
 
     main {
@@ -828,7 +945,21 @@
       font-family: inherit;
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
+      .brand-logo-text {
+        font-size: 21px;
+        white-space: nowrap !important;
+        max-width: 65%;
+      }
+
+      .desktop-nav {
+        display: none !important;
+      }
+
+      .hamburger-btn {
+        display: flex !important;
+      }
+
       h1 { font-size: 32px; }
       .description { font-size: 17px; }
       .input-grid { grid-template-columns: 1fr; }
@@ -836,13 +967,21 @@
       .form-card { padding: 20px; }
       .footer-content { flex-direction: column; text-align: center; }
       .modal-card { padding: 22px; }
-      .nav-action-link span.btn-label-long { display: none; }
+    }
+
+    @media (max-width: 400px) {
+      .brand-logo-text {
+        font-size: 19px;
+      }
+      .header-container {
+        padding: 10px 14px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Topo com Logo, Links (Rádio e PIX) e Alternador Sol/Lua -->
+  <!-- Topo com Título The Stories em Uma Linha, Links Desktop, Alternador Sol/Lua e Botão Hambúrguer Mobile -->
   <header>
     <div class="header-container">
       <a href="/" class="brand-logo-text" title="The Stories — Página Inicial">
@@ -851,19 +990,24 @@
       </a>
 
       <div class="header-actions">
-        <!-- Botão Rádio The Stories -->
-        <a href="https://thestories.cc/radio" class="nav-action-link nav-radio" target="_blank" rel="noopener noreferrer" title="Ouvir a Rádio The Stories">
-          <span>📻</span>
-          <span>Rádio<span class="btn-label-long"> The Stories</span></span>
-        </a>
+        <!-- Navegação Desktop -->
+        <nav class="desktop-nav" aria-label="Navegação Principal">
+          <a href="https://thestories.cc/radio" class="nav-action-link nav-radio" target="_blank" rel="noopener noreferrer" title="Ouvir a Rádio The Stories">
+            <span>📻</span>
+            <span>Rádio The Stories</span>
+          </a>
 
-        <!-- Botão Apoio / Doação PIX -->
-        <a href="https://thestories.cc/pix" class="nav-action-link nav-pix" target="_blank" rel="noopener noreferrer" title="Apoiar o projeto via PIX">
-          <span>💛</span>
-          <span>Doar<span class="btn-label-long"> via PIX</span></span>
-        </a>
+          <a href="https://thestories.cc/pix" class="nav-action-link nav-pix" target="_blank" rel="noopener noreferrer" title="Apoiar o projeto via PIX">
+            <span>💛</span>
+            <span>Doar via PIX</span>
+          </a>
 
-        <!-- Botão Alternador Sol / Lua (Claro / Escuro) -->
+          <button type="button" class="header-cta-btn" onclick="openStoryModal()">
+            <span>Espiar Edição</span>
+          </button>
+        </nav>
+
+        <!-- Botão Sol / Lua -->
         <button
           type="button"
           class="theme-toggle-btn"
@@ -872,11 +1016,9 @@
           title="Alternar entre modo Claro e Escuro"
           aria-label="Alternar modo claro e escuro"
         >
-          <!-- Ícone da Lua (exibido no modo Claro) -->
           <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
           </svg>
-          <!-- Ícone do Sol (exibido no modo Escuro) -->
           <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <circle cx="12" cy="12" r="4"></circle>
             <path d="M12 2v2"></path>
@@ -890,9 +1032,49 @@
           </svg>
         </button>
 
-        <button type="button" class="header-cta-btn" onclick="openStoryModal()">
-          <span>Espiar Edição</span>
+        <!-- Botão Hambúrguer Mobile -->
+        <button
+          type="button"
+          class="hamburger-btn"
+          id="hamburgerBtn"
+          onclick="toggleMobileMenu()"
+          title="Abrir menu"
+          aria-label="Menu de navegação"
+          aria-expanded="false"
+        >
+          <svg class="icon-hamburger-bars" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <svg class="icon-hamburger-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
         </button>
+      </div>
+    </div>
+
+    <!-- Gaveta do Menu Mobile Dropdown -->
+    <div class="mobile-menu-drawer" id="mobileMenu">
+      <a href="https://thestories.cc/radio" class="mobile-menu-link mobile-menu-link-radio" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()">
+        <span>📻 Ouvir Rádio The Stories</span>
+        <span>↗</span>
+      </a>
+
+      <a href="https://thestories.cc/pix" class="mobile-menu-link mobile-menu-link-pix" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()">
+        <span>💛 Apoiar o Projeto via PIX</span>
+        <span>↗</span>
+      </a>
+
+      <a href="#amostra" class="mobile-menu-link" onclick="openStoryModal()">
+        <span>📖 Espiar Edição #52 Completa</span>
+        <span>→</span>
+      </a>
+
+      <div class="mobile-menu-info">
+        <span>☕ Envio todo domingo às 08:08</span>
+        <span>🔒 100% gratuito</span>
       </div>
     </div>
   </header>
@@ -973,7 +1155,7 @@
     </div>
 
     <!-- Amostra de Domingo (Degustação de Conteúdo) -->
-    <div class="teaser-card">
+    <div class="teaser-card" id="amostra">
       <div class="teaser-top">
         <span>Amostra da Edição #52</span>
         <span>4 min de leitura</span>
@@ -1067,7 +1249,35 @@
       } catch (e) {}
     }
 
+    function toggleMobileMenu() {
+      var menu = document.getElementById('mobileMenu');
+      var btn = document.getElementById('hamburgerBtn');
+      var isOpen = document.body.classList.contains('menu-open');
+      if (isOpen) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    }
+
+    function openMobileMenu() {
+      var menu = document.getElementById('mobileMenu');
+      var btn = document.getElementById('hamburgerBtn');
+      if (menu) menu.classList.add('active');
+      if (btn) btn.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('menu-open');
+    }
+
+    function closeMobileMenu() {
+      var menu = document.getElementById('mobileMenu');
+      var btn = document.getElementById('hamburgerBtn');
+      if (menu) menu.classList.remove('active');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+    }
+
     function openStoryModal() {
+      closeMobileMenu();
       var modal = document.getElementById('storyModal');
       if (modal) {
         modal.classList.add('active');
@@ -1100,6 +1310,14 @@
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' || e.keyCode === 27) {
         closeStoryModal();
+        closeMobileMenu();
+      }
+    });
+
+    document.addEventListener('click', function(e) {
+      var header = document.querySelector('header');
+      if (header && !header.contains(e.target) && document.body.classList.contains('menu-open')) {
+        closeMobileMenu();
       }
     });
   </script>

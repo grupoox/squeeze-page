@@ -1,6 +1,7 @@
 /* ==========================================================================
    The Stories — Squeeze Page Oficial (Estilos Puros Vanilla CSS)
    Suporta Modo Claro (Alabaster Editorial) e Modo Escuro (Veludo Noturno)
+   Com Menu Hambúrguer Responsivo e Título Sem Quebra
    ========================================================================== */
 
 :root {
@@ -15,7 +16,7 @@
   --btn-bg: #1C1917;
   --btn-hover: #292524;
   --btn-text: #FFFFFF;
-  --header-bg: rgba(250, 248, 245, 0.94);
+  --header-bg: rgba(250, 248, 245, 0.96);
   --box-highlight: rgba(245, 245, 244, 0.7);
   --border-dashed: #D6D3D1;
   --quote-border: #D6D3D1;
@@ -43,7 +44,7 @@
   --btn-bg: #F5F5F4;
   --btn-hover: #FFFFFF;
   --btn-text: #121110;
-  --header-bg: rgba(18, 17, 16, 0.94);
+  --header-bg: rgba(18, 17, 16, 0.96);
   --box-highlight: rgba(30, 28, 26, 0.75);
   --border-dashed: #3E3B37;
   --quote-border: #44403C;
@@ -74,6 +75,7 @@ body {
   display: flex;
   flex-direction: column;
   -webkit-font-smoothing: antialiased;
+  position: relative;
 }
 
 /* --------------------------------------------------------------------------
@@ -96,9 +98,10 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
 }
 
+/* Título The Stories: Sem quebra de linha em nenhuma tela */
 .brand-logo-text {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 24px;
@@ -106,16 +109,24 @@ header {
   color: var(--text-main);
   text-decoration: none;
   letter-spacing: -0.5px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .header-actions {
   display: flex;
   align-items: center;
+  gap: 8px;
+}
+
+/* Menu no Desktop */
+.desktop-nav {
+  display: flex;
+  align-items: center;
   gap: 10px;
-  flex-wrap: wrap;
 }
 
 /* Links em destaque no topo (Rádio, PIX) */
@@ -129,6 +140,7 @@ header {
   align-items: center;
   gap: 6px;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .nav-radio {
@@ -166,6 +178,7 @@ header {
   padding: 0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
 .theme-toggle-btn:hover {
@@ -198,11 +211,122 @@ header {
   align-items: center;
   gap: 6px;
   transition: all 0.15s ease;
+  white-space: nowrap;
 }
 
 .header-cta-btn:hover {
   background: var(--card-bg);
   border-color: var(--border-focus);
+}
+
+/* --------------------------------------------------------------------------
+   Botão Hambúrguer & Menu Mobile
+   -------------------------------------------------------------------------- */
+.hamburger-btn {
+  display: none;
+  background: var(--card-bg);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.hamburger-btn:hover {
+  border-color: var(--border-focus);
+}
+
+.hamburger-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+}
+
+.icon-hamburger-bars { display: block; }
+.icon-hamburger-close { display: none; }
+
+.menu-open .icon-hamburger-bars { display: none; }
+.menu-open .icon-hamburger-close { display: block; }
+
+/* Gaveta do Menu Mobile Dropdown */
+.mobile-menu-drawer {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+  padding: 16px 20px 20px 20px;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 50;
+  animation: slideMenuDown 0.22s ease-out;
+}
+
+.mobile-menu-drawer.active {
+  display: flex;
+}
+
+@keyframes slideMenuDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-menu-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text-main);
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--input-bg);
+  border: 1px solid var(--border-color);
+  transition: all 0.15s ease;
+}
+
+.mobile-menu-link:hover,
+.mobile-menu-link:active {
+  border-color: var(--border-focus);
+}
+
+.mobile-menu-link-radio {
+  background: var(--radio-badge-bg);
+  color: var(--radio-badge-text);
+  border-color: var(--radio-badge-border);
+}
+
+.mobile-menu-link-pix {
+  background: var(--pix-badge-bg);
+  color: var(--pix-badge-text);
+  border-color: var(--pix-badge-border);
+}
+
+.mobile-menu-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--text-subtle);
+  padding: 10px 4px 2px 4px;
+  border-top: 1px dashed var(--border-dashed);
 }
 
 /* --------------------------------------------------------------------------
@@ -738,9 +862,26 @@ footer {
 }
 
 /* --------------------------------------------------------------------------
-   Responsividade
+   Responsividade: Ajustes Específicos para Mobile e Tablet
    -------------------------------------------------------------------------- */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  /* Título The Stories garantido em UMA ÚNICA LINHA no mobile */
+  .brand-logo-text {
+    font-size: 21px;
+    white-space: nowrap !important;
+    max-width: 65%;
+  }
+
+  /* Oculta os links soltos do topo no mobile */
+  .desktop-nav {
+    display: none !important;
+  }
+
+  /* Exibe o botão hambúrguer no mobile */
+  .hamburger-btn {
+    display: flex !important;
+  }
+
   h1 { font-size: 32px; }
   .description { font-size: 17px; }
   .input-grid { grid-template-columns: 1fr; }
@@ -748,5 +889,13 @@ footer {
   .form-card { padding: 20px; }
   .footer-content { flex-direction: column; text-align: center; }
   .modal-card { padding: 22px; }
-  .nav-action-link span.btn-label-long { display: none; }
+}
+
+@media (max-width: 400px) {
+  .brand-logo-text {
+    font-size: 19px;
+  }
+  .header-container {
+    padding: 10px 14px;
+  }
 }
